@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.left {
+    float: left;
+    width: 30%;
+    background-color: aqua;
+}
+
+.right {
+    float: left;
+    width: 70%;
+    background-color: brown;
+}

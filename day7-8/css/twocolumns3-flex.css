@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    align-items: flex-start;
+}
+
+.left2 {
+    flex: 1 1 auto;
+    background-color: aqua;
+}
+
+.right2 {
+    flex: 0 0 200px;
+    background-color: brown;
+}

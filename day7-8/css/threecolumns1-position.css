@@ -1,0 +1,32 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    position: relative;
+}
+
+.left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    background-color: aqua;
+}
+
+.right {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 150px;
+    background-color: blueviolet;
+}
+
+.middle {
+    position: absolute;
+    top: 0;
+    left: 150px;
+    width: calc(100% - 300px);
+    background-color: blue;
+}
