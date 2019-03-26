@@ -66,13 +66,15 @@ a {
 }
 
 .banner ul li a:hover, .banner ul li a:active {
-    line-height: 3;
+    height: 40px;
     background-color: white;
 }
 
 .nav {
     width: 960px;
     margin: 10px auto;
+    overflow: auto;
+    border-bottom: 1px solid rgb(238, 238, 238);
 }
 
 .nav ul li {
@@ -83,8 +85,9 @@ a {
 .nav ul li a {
     font-size: 16px;
     line-height: 3;
-    border: 1px solid rgb(220, 220, 220);
-    border-bottom: none;
+    border-top: 1px solid rgb(220, 220, 220);
+    border-left: 1px solid rgb(220, 220, 220);
+    border-right: 1px solid rgb(220, 220, 220);
     border-radius: 20px 20px 0 0;
     color: black;
     text-decoration: none;
@@ -96,32 +99,27 @@ a {
     border-bottom-color: white;
 }
 
-.horizontalstring {
-    clear: both;
-    width: 100%;
-    height: 1px;
-    background-color: rgb(238, 238, 238);
-}
-
 /* .front, .behind {
     display: inline-block;
-    
+    height: 1px;
 }
 
 .front {
-    width: calc(100% - 960px);
+    width: 194px;
+    
 }
 
 .behind {
-    width: calc(100% - 960px)/2 + 660px;
+    width: 855px;
+    background-color: rgb(238, 238, 238);
 }
 
 .first, .second, .third {
+    height: 1px;
     display: inline-block;
     width: 100px;
-    height: 1px;
     background-color: rgb(238, 238, 238);
-} */
+}  */
 
 .main-content {
     display: flex;
