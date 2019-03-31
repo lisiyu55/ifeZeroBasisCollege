@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.left {
+    background-color: rgb(133, 133, 133);
+    color: white;
+    height: 50px;
+    padding-left: 10px;
+}
+
+h1 {
+    line-height: 50px;
+    font-size: 20px;
+}
+
+strong {
+    margin-right: 10px;
+}
+
+.col {
+    width: 100%;
+    border: 1px solid rgb(211, 208, 208);
+    height: 110px;
+    position: relative;
+}
+
+h2 {
+    height: 110px;
+    width: 110px;
+    background-color: rgb(201, 197, 197);
+    font-size: 20px;
+    line-height: 110px;
+    text-align: center;
+}
+
+h3 {
+    font-size: 16px;
+}
+
+p {
+    display: inline-block;
+    margin-right: 50px;
+}
+
+.info-contact, .row-second {
+    position: absolute;
+    top: 10px;
+    left: 110px;
+}

@@ -1,0 +1,155 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.icons {
+    width: 6.7%;
+    height: 1000px;
+    background-color: rgb(29, 37, 49);
+    padding-top: 5px;
+    position: relative;
+    float: left;
+}
+
+.icons img {
+    margin-bottom: 5px;
+    margin-left: 6px;
+    margin-right: 6px;
+}
+
+.footer-icon {
+    position: absolute;
+    bottom: 0;
+}
+
+#arrow {
+    position: absolute;
+    top: 38px;
+    margin: 0;
+}
+
+.menu {
+    width: 17%;
+    height: 1000px;
+    padding-top: 5px;
+    float: left;
+    background-color: rgb(34, 44, 60);
+}
+
+.main-menu {
+    width: 200px;
+    margin: 0 auto;
+    height: 1000px;
+    color: rgb(71, 83, 100);
+    position: relative;
+}
+
+.MENU, .YOUR-PRODUCTS, .DASHBOARD {
+    position: relative;
+}
+
+li {
+    list-style-type: none;
+    margin-bottom: 20px;
+    color: rgb(183, 192, 205);
+}
+
+.title {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.sales-number {
+    border: 1px solid rgb(34, 44, 60);
+    background-color: rgb(35, 153, 241);
+    width: 35px;
+    height: 24px;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    position: absolute;
+    right: 0;
+}
+
+.number1 {
+    top: 82px;
+}
+
+.number2 {
+    top: 41px;
+}
+
+#tanhao {
+    position: absolute;
+    right: 0;
+    top: 82px;
+}
+
+.settings {
+    right: 0;
+    top: 0;
+    position: absolute;
+}
+
+#product-setting {
+    margin-left: 25px;
+}
+
+.YOUR-PRODUCTS {
+    position: relative;
+}
+
+#pic1, #pic2, #pic3, #pic4 {
+    position: absolute;
+}
+
+#pic1 {
+    top: 41px;
+}
+
+#pic2 {
+    top: 82px;
+}
+
+#pic3 {
+    top: 123px;
+}
+
+#pic4 {
+    top: 164px;
+}
+
+.Monthly-goals {
+    position: absolute;
+    bottom: 40px;
+}
+
+.monthly {
+    font-size: 15px;
+}
+
+.content{
+    width: 72%;
+    height: 1000px;
+    padding-top: 5px;
+    float: left;
+}
+
+.header{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+}
+
+.header h3{
+    float: left;
+}
+
+.personal-info{
+    float: right;
+}
+
+.personal-info p,.personal-info img{
+    float: left;
+}
