@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <table id="tab">
+
+    </table>
+</body>
+<script>
+    for (var i = 1; i <= 9; i++) {
+        var ele = document.createElement("tr");
+        var table = document.getElementById("tab");
+        for (var j = 1; j <= 9; j++) {
+            if (j <= i) {
+                var ele1 = document.createElement("td");
+                ele1.innerHTML = j + "*" + i + "=" + i * j;
+                ele.appendChild(ele1);
+            }
+            table.appendChild(ele);
+        }
+    }
+
+</script>
+
+</html>

@@ -26,10 +26,10 @@
         }
 
         document.getElementById("divide-btn").onclick = function () {
-            if (parseInt(document.getElementById("second-number")) != 0) {
+            if (Number(document.getElementById("second-number").value) != 0) {
                 document.getElementById("result").innerHTML = parseFloat(document.getElementById("first-number").value) / parseFloat(document.getElementById("second-number").value);
             }
-            else{
+            else {
                 alert("input error!");
             }
         }

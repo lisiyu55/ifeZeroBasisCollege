@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>DecToBinary</title>
+</head>
+
+<body>
+    <button id="trans-btn">开始输出</button>
+    <script>
+        function output() {
+            // 输出1-100，3的倍数要输出PA，含3的数字要输出PA
+            var str="1";
+            var s="";
+            for (var i = 2; i <= 100; i++) {
+                s=""+i;
+                if(i%3==0||(s.match("3")!=null)){//使用match("")是否等于null得到字符串是否包含字符3
+                    str+=",PA";
+                }
+                else{
+                    str+=(","+i);
+                }
+            }
+            console.log(str);
+
+        }
+
+        // 实现党点击转化按钮时，将输入的十进制数字转化为二进制，并显示在result的p标签内
+        // Some coding
+        document.getElementById("trans-btn").onclick = function () {
+            output();
+        }
+    </script>
+</body>
+
+</html>

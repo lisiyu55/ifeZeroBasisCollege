@@ -1,0 +1,35 @@
+main{
+    margin: 0 auto;
+    width: 75%;
+    display: flex;
+}
+.left{
+    background-color: rgb(101,165,250);
+    flex: 0 1 200px;
+}
+.right{
+    padding-left: 20px;
+    flex: 0 1 800px;
+}
+h1{
+    margin: 20px 0;
+    color: white;
+    font-size: 40px;
+    text-align: center;
+}
+h2{
+    margin: 15px 0;
+    font-size: 28px;
+    
+}
+strong{
+    margin-right: 10px;
+}
+.info-contact{
+    display: flex;
+    justify-content: flex-start;
+}
+.info-contact p{
+    flex:0 1 250px;
+    font-size: 20px;
+}
