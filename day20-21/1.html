@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <input id="name" type="text">
+    <button id="submit-btn">Submit</button>
+</body>
+<script>
+    document.getElementById("name").onkeydown = function (e) {
+        var keyNum2 = e.keyCode;
+        var keyNum = e.which;
+        //     var keyNum1 = window.event ? e.keyCode : e.which;
+        if (keyNum == 27) {
+            document.getElementById("name").value = " ";
+        }
+        else if (keyNum == 13) {
+            console.log(document.getElementById("name").value);
+        }
+    }
+    document.getElementById("submit-btn").onclick = function () {
+        console.log(document.getElementById("name").value);
+    }
+</script>
+
+</html>

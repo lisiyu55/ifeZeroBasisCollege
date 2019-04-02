@@ -39,6 +39,7 @@
 
         function getAllListItem() {
             // 返回页面中所有li标签
+            var l1 = document.querySelectorAll("li");
             var l = document.getElementsByTagName("li");
             for (var i = 0; i < l.length; i++) {
                 console.log(l[i].innerHTML);
@@ -48,6 +49,7 @@
 
         function findAllHtmlSpanInOneSection(sectionId) {
             // 返回某个section下所有span中内容为HTML的span标签
+
             var section = document.getElementById(sectionId);
             var span = section.getElementsByTagName("span");
             var array = new Array();
@@ -58,10 +60,8 @@
                     console.log(array[k]);
                     k++;
                 }
-
             }
             return array;
-
         }
 
         function findListItem(sectionId, spanCont) {
@@ -70,11 +70,12 @@
 
         function getActiveLinkContent(sectionId) {
             // 返回某个section下，class为active的链接中包含的文字内容
-            var array=new Array();
+            var array = new Array();
             var section = document.getElementById(sectionId);
+            var array1 = document.querySelectorAll("a[class='active']")
             var activA = section.getElementsByClassName("active");
             for (var i = 0; i < activA.length; i++) {
-                array[i]=activA[i].innerHTML;
+                array[i] = activA[i].innerHTML;
                 console.log(array[i]);
             }
             return array;
