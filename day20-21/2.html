@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+        select {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <label>
+        <input id="school" name="status" type="radio" onclick="changeRadio()">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio" onclick="changeRadio()">
+        Company
+    </label>
+
+    <select id="school-select">
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">
+        <option>百度</option>
+        <option>爱奇艺</option>
+    </select>
+</body>
+<script>
+    function changeRadio() {
+        if (document.getElementById("school").checked) {
+            document.getElementById("school-select").style.cssText = "display:inline";
+            document.getElementById("company-select").style.cssText = "display:none";
+        }
+        else if(document.getElementById("company").checked){
+            document.getElementById("company-select").style.cssText = "display:inline";
+            document.getElementById("school-select").style.cssText = "display:none";
+        }
+    }
+
+</script>
+
+</html>
