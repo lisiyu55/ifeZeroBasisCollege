@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #sprite {
+            width: 480px;
+            height: 480px;
+            background: url(smile.jpg) no-repeat 0 0;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sprite">
+    </div>
+    <script>
+    //方法一：利用setInterval()循环调用改变图片位置形成动画效果，可设置循环调用函数间隔大小
+            var sprite = document.getElementById("sprite"),
+                picWidth = 480,
+                k = 17,
+                i = 0,
+                timer = null;
+            // 重置背景图片位置
+            sprite.style = "background-position: 0 0";
+            // 改变背景图位置
+            function changePosition() {
+                sprite.style = "background-position: 0" + (-picWidth * i) + "px";
+                i++;
+                if (i == k) {
+                    i = 0;
+                }
+            }
+            setInterval(changePosition,200);
+    </script>
+</body>
+
+</html>
