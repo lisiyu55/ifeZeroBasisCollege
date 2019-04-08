@@ -17,35 +17,35 @@
 
         var stack = ["apple", "pear"];
 
-        function show(stack){
-            var str=stack.join("->");
-            str="队列内容："+str;
-            document.getElementById("stack-cont").innerHTML=str;
+        function show(stack) {
+            var str = stack.join("->");
+            str = "队列内容：" + str;
+            document.getElementById("stack-cont").innerHTML = str;
         }
 
-        document.getElementById("push-btn").onclick=function(){
-            var item=document.getElementById("stack-input").value;
-            stack[stack.length]=item;
+        document.getElementById("push-btn").onclick = function () {
+            var item = document.getElementById("stack-input").value;
+            stack[stack.length] = item;
             show(stack);
         }
 
-        document.getElementById("pop-btn").onclick=function(){
+        document.getElementById("pop-btn").onclick = function () {
             stack.length--;
             show(stack);
         }
 
-        document.getElementById("font-btn").onclick=function(){
-            console.log(stack[stack.length-1]);
+        document.getElementById("font-btn").onclick = function () {
+            console.log(stack[stack.length - 1]);
         }
 
-        document.getElementById("empty-btn").onclick=function(){
-            var str="栈为空";
-            if(stack.length==0){
-                document.getElementById("stack-cont").innerHTML=str;
+        document.getElementById("empty-btn").onclick = function () {
+            var str = "栈为空";
+            if (stack.length == 0) {
+                document.getElementById("stack-cont").innerHTML = str;
             }
-            else{
-                str="栈不为空";
-                document.getElementById("stack-cont").innerHTML=str;
+            else {
+                str = "栈不为空";
+                document.getElementById("stack-cont").innerHTML = str;
             }
         }
 

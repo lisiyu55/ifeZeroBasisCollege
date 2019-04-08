@@ -17,39 +17,39 @@
 
         var queue = ["apple", "pear"];
 
-        function show(queue){
-            var str=queue.join("->");
-            str="队列内容："+str;
-            document.getElementById("queue-cont").innerHTML=str;
+        function show(queue) {
+            var str = queue.join("->");
+            str = "队列内容：" + str;
+            document.getElementById("queue-cont").innerHTML = str;
         }
 
-        document.getElementById("in-btn").onclick=function(){
-            var item=document.getElementById("queue-input").value;
-            for(var i=queue.length;i>0;i--){
-                queue[i]=queue[i-1];
+        document.getElementById("in-btn").onclick = function () {
+            var item = document.getElementById("queue-input").value;
+            for (var i = queue.length; i > 0; i--) {
+                queue[i] = queue[i - 1];
             }
-            queue[0]=item;
+            queue[0] = item;
             console.log(item);
             show(queue);
         }
 
-        document.getElementById("out-btn").onclick=function(){
+        document.getElementById("out-btn").onclick = function () {
             queue.length--;
             show(queue);
         }
 
-        document.getElementById("font-btn").onclick=function(){
-            console.log(queue[queue.length-1]);
+        document.getElementById("font-btn").onclick = function () {
+            console.log(queue[queue.length - 1]);
         }
 
-        document.getElementById("empty-btn").onclick=function(){
-            var str="队列为空";
-            if(queue.length==0){
-                document.getElementById("queue-cont").innerHTML=str;
+        document.getElementById("empty-btn").onclick = function () {
+            var str = "队列为空";
+            if (queue.length == 0) {
+                document.getElementById("queue-cont").innerHTML = str;
             }
-            else{
-                str="队列不空";
-                document.getElementById("queue-cont").innerHTML=str;
+            else {
+                str = "队列不空";
+                document.getElementById("queue-cont").innerHTML = str;
             }
         }
 
