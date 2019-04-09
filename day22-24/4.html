@@ -8,92 +8,170 @@
 
 <body>
     <input type="text" placeholder="enter your ID" id="ID">
-    <input type="text" placeholder="enter your name" id="name">
-</body>
+    <input type="text" placeholder="enter your name" id="txt1">
+    <button id="btn">确定</button>
 
-<script>
+    <script>
 
-    var tree = {
-        "id": 0,
-        "name": "root",
-        "left": {
-            "id": 1,
-            "name": "Simon",
+        var tree = {
+            "id": 0,
+            "name": "root",
             "left": {
-                "id": 3,
-                "name": "Carl",
+                "id": 1,
+                "name": "Simon",
                 "left": {
-                    "id": 7,
-                    "name": "Lee",
+                    "id": 3,
+                    "name": "Carl",
                     "left": {
-                        "id": 11,
-                        "name": "Fate"
+                        "id": 7,
+                        "name": "Lee",
+                        "left": {
+                            "id": 11,
+                            "name": "Fate"
+                        }
+                    },
+                    "right": {
+                        "id": 8,
+                        "name": "Annie",
+                        "left": {
+                            "id": 12,
+                            "name": "Saber"
+                        }
                     }
                 },
                 "right": {
-                    "id": 8,
-                    "name": "Annie",
+                    "id": 4,
+                    "name": "Tony",
                     "left": {
-                        "id": 12,
-                        "name": "Saber"
+                        "id": 9,
+                        "name": "Candy"
                     }
                 }
             },
             "right": {
-                "id": 4,
-                "name": "Tony",
+                "id": 2,
+                "name": "right",
                 "left": {
-                    "id": 9,
-                    "name": "Candy"
-                }
-            }
-        },
-        "right": {
-            "id": 2,
-            "name": "right",
-            "left": {
-                "id": 5,
-                "name": "Carl",
-            },
-            "right": {
-                "id": 6,
-                "name": "Carl",
+                    "id": 5,
+                    "name": "Carl",
+                },
                 "right": {
-                    "id": 10,
-                    "name": "Kai"
+                    "id": 6,
+                    "name": "Carl",
+                    "right": {
+                        "id": 10,
+                        "name": "Kai"
+                    }
                 }
             }
         }
-    }
 
-    var id = document.getElementById("ID").value;
-    var name = document.getElementById("name").value;
+        var id = document.getElementById("ID").value;
+        var name = document.getElementById("txt1").value;
+        getListWithDLR();
+        getListWithLDR();
+        getListWithLRD();
+        document.getElementById("btn").onclick = function () {
+            if (name != null) {
+                findIdByName(name);
+            }
+            else if (id != null) {
+                findNameById(id);
+            }
+        }
 
-    // 假设id和name均不会重复，根据输入name找到对应的id
-    function findIdByName(name) {
+        function visitAllFirst(head) { 
+            console.log(head.name);
+            if (head.left) {
+                visitAllFirst(head.left);
+            }
+            if (head.right) {
+                visitAllFirst(head.right);
+            }
+            return;
+        }
 
-    }
+        function visitAllMiddle(head) { 
+            if (head.left) {
+                visitAllMiddle(head.left);
+            }
+            console.log(head.name);
+            if (head.right) {
+                visitAllMiddle(head.right);
+            }
+            return;
+        }
 
-    // 假设id和name均不会重复，根据输入id找到对应的name
-    function findNameById(id) {
+        function visitAllLast(head) { 
+            if (head.left) {
+                visitAllLast(head.left);
+            }
+            if (head.right) {
+                visitAllLast(head.right);
+            }
+            console.log(head.name);
+            return;
+        }
 
-    }
 
-    // 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
-    function getListWithDLR() {
+        function visitAll(name, head) { 
+            if (head.name == name) {
+                return head.id;
+            }
+            if (head.left) {
+                visitAll(name, head.left);
+            }
+            if (head.right) {
+                visitAll(name, head.right);
+            }
+            return -1;
+        }
 
-    }
+        function visitAll(id, head) { 
+            if (head.id == id) {
+                return head.name;
+            }
+            if (head.left) {
+                visitAll(id, head.left);
+            }
+            if (head.right) {
+                visitAll(id, head.right);
+            }
+            return -1;
+        }
 
-    // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
-    function getListWithLDR() {
+        // 假设id和name均不会重复，根据输入name找到对应的id
+        function findIdByName(name) {
+            name="root";
+            var id = visitAll(name, tree);
+            console.log(id);
+        }
 
-    }
+        // 假设id和name均不会重复，根据输入id找到对应的name
+        function findNameById(id) {
+            id="0";
+            var name=visitAll(id,tree);
+            console.log(name);
+        }
 
-    // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
-    function getListWithLRD() {
+        // 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+        function getListWithDLR() {
+            visitAllFirst(tree);
+        }
 
-    }
+        // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+        function getListWithLDR() {
+            visitAllMiddle(tree);
+        }
 
-</script>
+        // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+        function getListWithLRD() {
+            visitAllLast(tree);
+        }
+
+    </script>
+</body>
+
+
 
 </html>
