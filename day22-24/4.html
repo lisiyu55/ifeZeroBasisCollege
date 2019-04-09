@@ -66,12 +66,15 @@
             }
         }
 
-        var id = document.getElementById("ID").value;
-        var name = document.getElementById("txt1").value;
-        getListWithDLR();
-        getListWithLDR();
-        getListWithLRD();
+        
+
+        // getListWithDLR();
+        // getListWithLDR();
+        // getListWithLRD();
         document.getElementById("btn").onclick = function () {
+            var name = document.getElementById("txt1").value;
+            var id = document.getElementById("ID").value;
+            console.log(name);
             if (name != null) {
                 findIdByName(name);
             }
@@ -114,7 +117,7 @@
         }
 
 
-        function visitAll(name, head) { 
+        function visitAllName(name, head) { 
             if (head.name == name) {
                 return head.id;
             }
@@ -127,7 +130,7 @@
             return -1;
         }
 
-        function visitAll(id, head) { 
+        function visitAllId(id, head) { 
             if (head.id == id) {
                 return head.name;
             }
@@ -142,15 +145,14 @@
 
         // 假设id和name均不会重复，根据输入name找到对应的id
         function findIdByName(name) {
-            name="root";
-            var id = visitAll(name, tree);
+            var id = visitAllName(name, tree);
             console.log(id);
         }
 
         // 假设id和name均不会重复，根据输入id找到对应的name
         function findNameById(id) {
             id="0";
-            var name=visitAll(id,tree);
+            var name=visitAllId(id,tree);
             console.log(name);
         }
 
