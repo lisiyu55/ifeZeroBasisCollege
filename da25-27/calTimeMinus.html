@@ -7,7 +7,7 @@
 
 <body>
 
-    <select id="year-select">
+    <select id="year-select" onchange="timeChange()">
         <option value="2000">2000</option>
         <option value="2001">2001</option>
         <option value="2002">2002</option>
@@ -43,7 +43,7 @@
         <option value="2032">2031</option>
     </select>
 
-    <select id="month-select">
+    <select id="month-select" onchange="timeChange()">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -58,69 +58,7 @@
         <option value="12">12</option>
     </select>
 
-    <select id="day-select">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-        <option value="16">16</option>
-        <option value="17">17</option>
-        <option value="18">18</option>
-        <option value="19">19</option>
-        <option value="20">20</option>
-        <option value="21">21</option>
-        <option value="22">22</option>
-        <option value="23">23</option>
-        <option value="24">24</option>
-        <option value="25">25</option>
-        <option value="26">26</option>
-        <option value="27">27</option>
-        <option value="28">28</option>
-        <option value="29">29</option>
-        <option value="30">30</option>
-        <option value="31">31</option>
-    </select>
-
-    <select id="hour-select">
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
-        <option value="11">11</option>
-        <option value="12">12</option>
-        <option value="13">13</option>
-        <option value="14">14</option>
-        <option value="15">15</option>
-        <option value="16">16</option>
-        <option value="17">17</option>
-        <option value="18">18</option>
-        <option value="19">19</option>
-        <option value="20">20</option>
-        <option value="21">21</option>
-        <option value="22">22</option>
-        <option value="23">23</option>
-    </select>
-
-    <select id="minute-select">
-        <option value="0">0</option>
+    <select id="day-select" onchange="timeChange()">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
@@ -152,37 +90,36 @@
         <option value="29">29</option>
         <option value="30">30</option>
         <option value="31">31</option>
-        <option value="32">32</option>
-        <option value="33">33</option>
-        <option value="34">34</option>
-        <option value="35">35</option>
-        <option value="36">36</option>
-        <option value="37">37</option>
-        <option value="38">38</option>
-        <option value="39">39</option>
-        <option value="40">40</option>
-        <option value="41">41</option>
-        <option value="42">42</option>
-        <option value="43">43</option>
-        <option value="44">44</option>
-        <option value="45">45</option>
-        <option value="46">46</option>
-        <option value="47">47</option>
-        <option value="48">48</option>
-        <option value="49">49</option>
-        <option value="50">50</option>
-        <option value="51">51</option>
-        <option value="52">52</option>
-        <option value="53">53</option>
-        <option value="54">54</option>
-        <option value="55">55</option>
-        <option value="56">56</option>
-        <option value="57">57</option>
-        <option value="58">58</option>
-        <option value="59">59</option>
     </select>
 
-    <select id="second-select">
+    <select id="hour-select" onchange="timeChange()">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+    </select>
+
+    <select id="minute-select" onchange="timeChange()">
         <option value="0">0</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -244,15 +181,175 @@
         <option value="58">58</option>
         <option value="59">59</option>
     </select>
-    <button id="btn">确定</button>
+
+    <select id="second-select" onchange="timeChange()">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+        <option value="32">32</option>
+        <option value="33">33</option>
+        <option value="34">34</option>
+        <option value="35">35</option>
+        <option value="36">36</option>
+        <option value="37">37</option>
+        <option value="38">38</option>
+        <option value="39">39</option>
+        <option value="40">40</option>
+        <option value="41">41</option>
+        <option value="42">42</option>
+        <option value="43">43</option>
+        <option value="44">44</option>
+        <option value="45">45</option>
+        <option value="46">46</option>
+        <option value="47">47</option>
+        <option value="48">48</option>
+        <option value="49">49</option>
+        <option value="50">50</option>
+        <option value="51">51</option>
+        <option value="52">52</option>
+        <option value="53">53</option>
+        <option value="54">54</option>
+        <option value="55">55</option>
+        <option value="56">56</option>
+        <option value="57">57</option>
+        <option value="58">58</option>
+        <option value="59">59</option>
+    </select>
     <p id="result-wrapper">现在距离 2001年1月1日星期X HH:MM:SS 还有 X 天 X 小时 X 分 X 秒</p>
-    <script>
 
-        document.getElementById("btn").onclick=function(){
+    <script>
+         
+        function showRightTime(year, month, day, h, m, s) {
+            h = check(h);
+            m = check(m);
+            s = check(s);
+            var watch = year + "年" + month + "月" + day + "日" + weekday() + h + ":" + m + ":" + s;
+            return watch;
+        }
+
+        function check(i) {
+            i = i + "";
+            if (i.length == 1) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        function weekday() {
+            var today = new Date();
+            var day = today.getDay();//当前星期几(0-6 0代表星期日)
+            var weekday = new Array(7)
+            weekday[0] = "星期日"
+            weekday[1] = "星期一"
+            weekday[2] = "星期二"
+            weekday[3] = "星期三"
+            weekday[4] = "星期四"
+            weekday[5] = "星期五"
+            weekday[6] = "星期六"
+            return weekday[day] + " ";
+        }
+
+        function MinusTime(str1,str2) {
+            var date1 = new Date(str1);
+            var date2 = new Date(str2);
+            sum1=date1.getTime();
+            sum2=date2.getTime();
+            var dValue=0;
+            var string="";
+            var day,hour,minute,second;
+            //一天：86400000毫秒  一小时：3600000毫秒  一分钟：60000毫秒 一秒：1000毫秒
+            if(sum1>sum2){
+                dValue=sum1-sum2;
+                day=parseInt(dValue/86400000);
+                hour=parseInt((dValue-day*86400000)/3600000);
+                minute=parseInt((dValue-day*86400000-hour*3600000)/60000);
+                second=parseInt((dValue-day*86400000-hour*3600000-minute*60000)/1000);
+                str=day+"天"+hour+"小时"+minute+"分"+second+"秒";
+                return str;
+            }
+            else{
+                dValue=sum2-sum1;
+                day=dValue/86400000;
+                hour=(dValue-day*86400000)/3600000;
+                minute=(dValue-day*86400000-hour*3600000)/60000;
+                second=(dValue-day*86400000-hour*3600000-minute*60000)/1000;
+                str=day+"天"+hour+"小时"+minute+"分"+second+"秒";
+                return str;
+            }
+        }
+        
+
+        function panDuan(str1,str2) {
+            var date1 = new Date(str1);
+            var date2 = new Date(str2);
+            sum1=date1.getTime();
+            sum2=date2.getTime();
+            if(sum1-sum2>0){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        function timeChange() {
+            var contentYear = document.getElementById("year-select").value;
+            var contentMonth = document.getElementById("month-select").value;
+            var contentDay = document.getElementById("day-select").value;
+            var contentHour = document.getElementById("hour-select").value;
+            var contentMinute = document.getElementById("minute-select").value;
+            var contentSecond = document.getElementById("second-select").value;
+            var str1=contentYear+"/"+contentMonth+"/"+contentDay+" "+contentHour+":"+contentMinute+":"+contentSecond;
+            var today = new Date();
+            var year = today.getFullYear();//当前年份
+            var month = today.getMonth();//当前月份(0-11 0代表一月)
+            var day = today.getDate();//当前日(1-31)
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            var str2=year+"/"+(month+1)+"/"+day+" "+h+":"+m+":"+s;
+            var str=showRightTime(contentYear,contentMonth,contentDay,contentHour,contentMinute,contentSecond);
+            if(panDuan(str1,str2)){
+                str="现在距离"+str+"还有";
+            }
+            else{
+                str="现在距离"+str+"过去了";
+            }
+            str+=MinusTime(str1,str2);
+            document.getElementById("result-wrapper").innerHTML=str;
 
         }
 
-        
+
 
     </script>
 </body>
