@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <p id="time1"></p>
+    <p id="time2"></p>
+
+    <script>
+        showTime();
+        showTime2();
+        function showTime() {
+            var today = new Date();
+            var year = today.getFullYear();//当前年份
+            var month = today.getMonth();//当前月份(0-11 0代表一月)
+            var day = today.getDate();//当前日(1-31)
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            month = check(month + 1);
+            day = check(day);
+            h = check(h);
+            m = check(m);
+            s = check(s);
+            var watch = year + "年" + month + "月" + day + "日" + weekday() + h + ":" + m + ":" + s;
+            document.getElementById("time1").innerHTML = watch;
+            var t = setTimeout("showTime()", 1000);
+
+        }
+
+        function showTime2() {
+            var today = new Date();
+            var year = today.getFullYear();//当前年份
+            var month = today.getMonth();//当前月份(0-11 0代表一月)
+            var day = today.getDate();//当前日(1-31)
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            month = check(month + 1);
+            day = check(day);
+            var watch = year + "-" + month + "-" + day + " " + weekday1()+transform();
+            document.getElementById("time2").innerHTML = watch;
+            var t = setTimeout("showTime2()", 1000);
+
+        }
+
+        function transform() {
+            var today = new Date();
+            var h = today.getHours();
+            var m = today.getMinutes();
+            var s = today.getSeconds();
+            h = check(h);
+            m = check(m);
+            s = check(s);
+            var t="";
+            if (h - 12 > 0) {
+                h -= 12;
+                t=h+":"+m+":"+s+" "+"PM";
+            }
+            else{
+                t=h+":"+m+":"+s+" "+"AM";
+            }
+            return t;
+        }
+
+        function check(i) {
+            i = i + "";
+            if (i.length == 1) {
+                i = "0" + i;
+            }
+            return i;
+        }
+
+        function weekday1() {
+            var today = new Date();
+            var day = today.getDay();//当前星期几(0-6 0代表星期日)
+            var weekday = new Array(7)
+            weekday[0] = "Sunday"
+            weekday[1] = "Monday"
+            weekday[2] = "Tuesday"
+            weekday[3] = "Wednesday"
+            weekday[4] = "Thursday"
+            weekday[5] = "Friday"
+            weekday[6] = "Saturday"
+            return weekday[day] + " ";
+        }
+
+        function weekday() {
+            var today = new Date();
+            var day = today.getDay();//当前星期几(0-6 0代表星期日)
+            var weekday = new Array(7)
+            weekday[0] = "星期日"
+            weekday[1] = "星期一"
+            weekday[2] = "星期二"
+            weekday[3] = "星期三"
+            weekday[4] = "星期四"
+            weekday[5] = "星期五"
+            weekday[6] = "星期六"
+            return weekday[day] + " ";
+        }
+    </script>
+</body>
+
+</html>
