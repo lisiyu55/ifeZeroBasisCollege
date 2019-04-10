@@ -289,19 +289,19 @@
             //一天：86400000毫秒  一小时：3600000毫秒  一分钟：60000毫秒 一秒：1000毫秒
             if(sum1>sum2){
                 dValue=sum1-sum2;
-                day=parseInt(dValue/86400000);
-                hour=parseInt((dValue-day*86400000)/3600000);
-                minute=parseInt((dValue-day*86400000-hour*3600000)/60000);
-                second=parseInt((dValue-day*86400000-hour*3600000-minute*60000)/1000);
+                day=Math.floor(dValue/86400000);
+                hour=Math.floor((dValue-day*86400000)/3600000);
+                minute=Math.floor((dValue-day*86400000-hour*3600000)/60000);
+                second=Math.floor((dValue-day*86400000-hour*3600000-minute*60000)/1000);
                 str=day+"天"+hour+"小时"+minute+"分"+second+"秒";
                 return str;
             }
             else{
                 dValue=sum2-sum1;
-                day=dValue/86400000;
-                hour=(dValue-day*86400000)/3600000;
-                minute=(dValue-day*86400000-hour*3600000)/60000;
-                second=(dValue-day*86400000-hour*3600000-minute*60000)/1000;
+                day=Math.floor(dValue/86400000);
+                hour=Math.floor((dValue-day*86400000)/3600000);
+                minute=Math.floor((dValue-day*86400000-hour*3600000)/60000);
+                second=Math.floor((dValue-day*86400000-hour*3600000-minute*60000)/1000);
                 str=day+"天"+hour+"小时"+minute+"分"+second+"秒";
                 return str;
             }
