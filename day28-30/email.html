@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+</head>
+
+<body>
+    <div class="wrapper" id="div">
+        <input id="email-input" type="text">
+        <ul id="email-sug-wrapper" class="email-sug"></ul>
+    </div>
+    <script>
+        // 邮箱后缀List参考
+        var postfixList = ['@163.com', '@gmail.com', '@126.com', '@qq.com', '@263.net'];
+        var div = document.getElementById("div");
+        var ul = document.getElementById("email-sug-wrapper");
+        ul.setAttribute('style', 'padding: 0; margin: 0');
+        var list = generatePrompt();
+        addContent(list);
+        document.getElementById("email-input").oninput = function () {//oninput最好用，onkeyup在变化中英文的时候会有一点小问题
+            //获取用户输入，生成提示框中的提示内容，将提示内容添加到email - sug - wrapper中
+            var str = getInput();
+            showEmailPrompt(str);
+            //控制email - sug - wrapper的显示 / 隐藏状态
+            controlPromptStatus(str);
+        }
+
+
+        function showEmailPrompt(str) {
+            for (var i = 0; i < list.length; i++) {
+                list[i].innerHTML = str + postfixList[i];
+            }
+        }
+
+        function justifyAt(str) {
+            var index = str.indexOf("@");
+            if (index == -1) {
+                return str;
+            }
+            else {
+                str = str.substring(0, index);
+                return str;
+            }
+
+        }
+
+        function getInput() {
+            //拿到input输入框的输入内容trim后返回
+            var str = document.getElementById("email-input").value;
+            //console.log(str);
+            str = trimLeft(trimRight(str));
+            str = justifyAt(str);
+            return str;
+        }
+
+        function trimRight(str) {
+            for (var i = str.length - 1; i >= 0; i--) {
+                if (str.charAt(i) == " " || str.charAt(i) == " ") {
+                    str = str.substring(0, i);
+                }
+                else {
+                    break;
+                }
+            }
+            return str;
+        }
+
+        function trimLeft(str) {
+            var num = 0;
+            for (var i = 0; i < str.length; i++) {
+                if (str.charAt(i) == " " || str.charAt(i) == " ") {
+                    num++;
+                }
+                else {
+                    break;
+                }
+            }
+            str = str.substring(num - 1);
+            return str;
+        }
+
+        function generatePrompt() {
+            //获取用户输入
+            var list = new Array();
+            var j = 0;
+            for (var i = 0; i < postfixList.length; i++) {
+                //把用户输入和每一个postfix进行结合成为每一个Li
+                list[j] = document.createElement("li");
+                list[j].setAttribute('style', 'list-style-type: none; width: 173px; height: 21px; font-size: 12px');
+                j++;
+            }
+            //返回生成的提示内容
+            return list;
+        }
+
+        function addContent(list) {
+            //获取生成提示框中的提示内容
+            //将内容添加到email - sug - wrapper中
+            for (var i = 0; i < list.length; i++) {
+                ul.appendChild(list[i]);
+            }
+        }
+
+        function controlPromptStatus(str) {
+            if (str == "") {
+                hidePrompt();
+            } else {
+                showPrompt();
+            }
+        }
+
+        function hidePrompt() {
+            //做具体隐藏提示框的操作
+            document.getElementById("email-sug-wrapper").style.visibility = "hidden";
+        }
+
+        function showPrompt() {
+            //做具体显示提示框的操作
+            document.getElementById("email-sug-wrapper").style.visibility = "visible";
+        }
+
+        // document.getElementById("email-input").onkeypress=function(){
+        //     console.log('event1 handle')
+        // }
+
+        // document.getElementById("email-input").onkeydown=function(){
+        //     console.log('event2 handle')
+        // }
+
+        // document.getElementById("email-input").onkeyup=function(){
+        //     console.log('event3 handle')
+        // }
+
+        // document.getElementById("email-input").oninput=function(){
+        //     console.log('event4 handle')
+        // }
+
+        /*for (i in postfixList) {
+            var li = document.createElement("li");
+            li.setAttribute('style', 'list-style-type: none; width: 173px; height: 21px; font-size: 12px');
+            ul.appendChild(li);
+        }
+        document.getElementById("email-input").oninput = function (e) {
+            var str = document.getElementById("email-input").value;
+            //str=trim(str);
+            if (str == "") {
+                document.getElementById("email-sug-wrapper").style.visibility="hidden";
+            }
+            else {
+                var list = document.getElementsByTagName("li");
+                var j = 0;
+                for (i in list) {
+                    list[i].innerHTML = str + "@" + postfixList[j];
+                    j++;
+                }
+            }
+
+        }
+        function trim(str){
+
+        }*/
+
+    </script>
+</body>
+
+</html>
