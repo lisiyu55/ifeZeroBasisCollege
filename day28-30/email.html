@@ -13,6 +13,7 @@
     <script>
         // 邮箱后缀List参考
         var postfixList = ['@163.com', '@gmail.com', '@126.com', '@qq.com', '@263.net'];
+        //var flag = false;//用来指示字符串中是否有@符号
         var div = document.getElementById("div");
         var ul = document.getElementById("email-sug-wrapper");
         ul.setAttribute('style', 'padding: 0; margin: 0');
@@ -26,10 +27,48 @@
             controlPromptStatus(str);
         }
 
+        function match(str, str1) {    //判断@之后的字符串是否与列表项内一致
+            str = str.substring(1, str1.length+1);
+            if (str == str1) {
+                return true;
+
+            }
+            else {
+                return false;
+            }
+        }
 
         function showEmailPrompt(str) {
-            for (var i = 0; i < list.length; i++) {
-                list[i].innerHTML = str + postfixList[i];
+            var index = str.indexOf("@");
+            if (index == -1 || index == str.length - 1) {
+                for (var i = 0; i < list.length; i++) {
+                    list[i].innerHTML = justifyAt(str) + postfixList[i];
+                }
+            }
+            else {
+                var flag = false;//记录是否有符合@之后字符的列表项
+                str1 = str.substring(index + 1);
+                var j = 0;
+                for (var i = 0; i < list.length; i++) {
+                    if (match(postfixList[i],str1)) {
+                        list[j].innerHTML = justifyAt(str) + postfixList[i];
+                        j++;
+                        flag = true;
+                    }
+                }
+                if (flag) {
+                    for (var k = list.length - 1; k > j - 1; k--) {
+                        list[k].innerHTML = "";
+                    }
+                }
+                else {
+                    for (var i = 0; i < list.length; i++) {
+                        list[i].innerHTML = justifyAt(str) + postfixList[i];
+                    }
+                }
+
+
+
             }
         }
 
@@ -42,7 +81,6 @@
                 str = str.substring(0, index);
                 return str;
             }
-
         }
 
         function getInput() {
@@ -50,7 +88,7 @@
             var str = document.getElementById("email-input").value;
             //console.log(str);
             str = trimLeft(trimRight(str));
-            str = justifyAt(str);
+            //str = justifyAt(str);
             return str;
         }
 
@@ -157,9 +195,7 @@
             }
 
         }
-        function trim(str){
-
-        }*/
+        */
 
     </script>
 </body>
