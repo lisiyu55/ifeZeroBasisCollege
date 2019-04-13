@@ -32,11 +32,11 @@
             controlPromptStatus(str);
         }
 
-        // document.getElementById("email-sug-wrapper").onclick = function (e) {
-        //     var str = e.target.innerHTML;
-        //     document.getElementById("email-input").value = str;
-        //     hidePrompt();
-        // }
+        document.getElementById("email-sug-wrapper").onclick = function (e) {
+            var str = e.target.innerHTML;
+            document.getElementById("email-input").value = str;
+            hidePrompt();
+        }
 
         document.getElementById("email-sug-wrapper").addEventListener("click", function (e) {
             var str = e.target.innerHTML;
