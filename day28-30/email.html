@@ -2,6 +2,11 @@
 <html>
 
 <head>
+    <style>
+        li:hover {
+            background-color: rgb(208, 210, 214);
+        }
+    </style>
 
 </head>
 
@@ -27,8 +32,20 @@
             controlPromptStatus(str);
         }
 
+        // document.getElementById("email-sug-wrapper").onclick = function (e) {
+        //     var str = e.target.innerHTML;
+        //     document.getElementById("email-input").value = str;
+        //     hidePrompt();
+        // }
+
+        document.getElementById("email-sug-wrapper").addEventListener("click", function (e) {
+            var str = e.target.innerHTML;
+            document.getElementById("email-input").value = str;
+            hidePrompt();
+        })
+
         function match(str, str1) {    //判断@之后的字符串是否与列表项内一致
-            str = str.substring(1, str1.length+1);
+            str = str.substring(1, str1.length + 1);
             if (str == str1) {
                 return true;
 
@@ -50,7 +67,7 @@
                 str1 = str.substring(index + 1);
                 var j = 0;
                 for (var i = 0; i < list.length; i++) {
-                    if (match(postfixList[i],str1)) {
+                    if (match(postfixList[i], str1)) {
                         list[j].innerHTML = justifyAt(str) + postfixList[i];
                         j++;
                         flag = true;
