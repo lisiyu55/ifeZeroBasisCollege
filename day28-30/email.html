@@ -2,17 +2,11 @@
 <html>
 
 <head>
-    <style>
-        li:hover {
-            background-color: rgb(208, 210, 214);
-        }
-    </style>
-
 </head>
 
 <body>
     <div class="wrapper" id="div">
-        <input id="email-input" type="text">
+        <input id="email-input" type="text" autofocus="autofocus">
         <ul id="email-sug-wrapper" class="email-sug"></ul>
     </div>
     <script>
@@ -20,16 +14,22 @@
         var postfixList = ['@163.com', '@gmail.com', '@126.com', '@qq.com', '@263.net'];
         //var flag = false;//用来指示字符串中是否有@符号
         var div = document.getElementById("div");
+        //var flagList = "false";//对于li列表项是否被选择进行区分
+        var selectIndex = 0;
+        var len = 0;
         var ul = document.getElementById("email-sug-wrapper");
         ul.setAttribute('style', 'padding: 0; margin: 0');
         var list = generatePrompt();
         addContent(list);
+        var t = setInterval('whiteList', 50);
         document.getElementById("email-input").oninput = function () {//oninput最好用，onkeyup在变化中英文的时候会有一点小问题
             //获取用户输入，生成提示框中的提示内容，将提示内容添加到email - sug - wrapper中
             var str = getInput();
             showEmailPrompt(str);
+            whiteList();
+            selectIndex = 0;
             //控制email - sug - wrapper的显示 / 隐藏状态
-            controlPromptStatus(str);
+            controlPromptStatus(str, selectIndex);
         }
 
         document.getElementById("email-sug-wrapper").onclick = function (e) {
@@ -44,6 +44,41 @@
             hidePrompt();
         })
 
+        document.onkeydown = function (event) {
+            var e = event;
+            var str = getInput();
+            showEmailPrompt(str);
+            if (e && e.keyCode == 38 && str) {
+                if (selectIndex - 1 < 0) {
+                    selectIndex = len - 1;
+
+                }
+                else {
+                    selectIndex = selectIndex - 1;
+                }
+                //控制email - sug - wrapper的显示 / 隐藏状态
+                controlPromptStatus(str, selectIndex);
+            }
+            if (e && e.keyCode == 40 && str) {
+                if (selectIndex + 1 == len) {
+                    selectIndex = 0;
+                }
+                else {
+                    selectIndex = selectIndex + 1;
+                }
+                //控制email - sug - wrapper的显示 / 隐藏状态
+                controlPromptStatus(str, selectIndex);
+            }
+            if (e && e.keyCode == 13 && str) {
+                var str = list[selectIndex].innerHTML;
+                document.getElementById("email-input").value = str;
+                hidePrompt();
+            }
+            if (e && e.keyCode == 27 && str) {
+                document.getElementById("email-input").select();
+            }
+        }
+
         function match(str, str1) {    //判断@之后的字符串是否与列表项内一致
             str = str.substring(1, str1.length + 1);
             if (str == str1) {
@@ -57,10 +92,15 @@
 
         function showEmailPrompt(str) {
             var index = str.indexOf("@");
-            if (index == -1 || index == str.length - 1) {
+            if (str == '') {
+
+            }
+            else if (index == -1 || index == str.length - 1) {
                 for (var i = 0; i < list.length; i++) {
                     list[i].innerHTML = justifyAt(str) + postfixList[i];
+
                 }
+                len = list.length;
             }
             else {
                 var flag = false;//记录是否有符合@之后字符的列表项
@@ -77,14 +117,14 @@
                     for (var k = list.length - 1; k > j - 1; k--) {
                         list[k].innerHTML = "";
                     }
+                    len = j;
                 }
                 else {
                     for (var i = 0; i < list.length; i++) {
                         list[i].innerHTML = justifyAt(str) + postfixList[i];
                     }
+                    len = list.length;
                 }
-
-
 
             }
         }
@@ -157,11 +197,11 @@
             }
         }
 
-        function controlPromptStatus(str) {
+        function controlPromptStatus(str, selectIndex) {
             if (str == "") {
                 hidePrompt();
             } else {
-                showPrompt();
+                showPrompt(selectIndex);
             }
         }
 
@@ -173,6 +213,35 @@
         function showPrompt() {
             //做具体显示提示框的操作
             document.getElementById("email-sug-wrapper").style.visibility = "visible";
+            for (var i = 0; i < list.length; i++) {
+                if (i == selectIndex) {
+                    list[selectIndex].setAttribute('style', 'background-color: aqua;width:173px');
+                }
+                else {
+                    list[i].setAttribute('style', 'background-color: white; width:173px ');
+                }
+
+            }
+        }
+
+        function whiteList() {
+            if (len == 0) {
+                for (var i = 0; i < list.length; i++) {
+                    list[i].setAttribute('style', 'background-color: white;width:173px');
+                }
+            }
+            else {
+                for (var i = 0; i < list.length; i++) {
+                    list[i].onmouseover = function () {
+                        for (var j = 0; j < list.length; j++) {
+                            list[j].style.background = "white";
+                        }
+                        this.style.background = "blue";
+                        list[selectIndex].style.background = "aqua";
+                    }
+                }
+            }
+
         }
 
         // document.getElementById("email-input").onkeypress=function(){
