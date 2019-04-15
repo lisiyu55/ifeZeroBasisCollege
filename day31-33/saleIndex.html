@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table,
+        tr,
+        td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <select id="selectBar" onchange="selectChange()">
+        <option value="华东" selected>华东</option>
+        <option value="华北">华北</option>
+        <option value="华南">华南</option>
+    </select>
+
+    <script>
+        var sourceData = [{
+            product: "手机",
+            region: "华东",
+            sale: [120, 100, 140, 160, 180, 185, 190, 210, 230, 245, 255, 270]
+        }, {
+            product: "手机",
+            region: "华北",
+            sale: [80, 70, 90, 110, 130, 145, 150, 160, 170, 185, 190, 200]
+        }, {
+            product: "手机",
+            region: "华南",
+            sale: [220, 200, 240, 250, 260, 270, 280, 295, 310, 335, 355, 380]
+        }, {
+            product: "笔记本",
+            region: "华东",
+            sale: [50, 60, 80, 110, 30, 20, 70, 30, 420, 30, 20, 20]
+        }, {
+            product: "笔记本",
+            region: "华北",
+            sale: [30, 35, 50, 70, 20, 15, 30, 50, 710, 130, 20, 20]
+        }, {
+            product: "笔记本",
+            region: "华南",
+            sale: [80, 120, 130, 140, 70, 75, 120, 90, 550, 120, 110, 100]
+        }, {
+            product: "智能音箱",
+            region: "华东",
+            sale: [10, 30, 4, 5, 6, 5, 4, 5, 6, 5, 5, 25]
+        }, {
+            product: "智能音箱",
+            region: "华北",
+            sale: [15, 50, 15, 15, 12, 11, 11, 12, 12, 14, 12, 40]
+        }, {
+            product: "智能音箱",
+            region: "华南",
+            sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
+        }]
+        window.initialTable();
+        //console.log(document.getElementById("selectBar").value);
+        function selectChange() {
+            emptyTable();
+            initialTable();
+        }
+
+        function emptyTable() {
+            var body=document.getElementsByTagName("body");
+            var table = document.getElementsByTagName("table");
+            body[0].removeChild(table[0]);
+            
+        }
+
+        function initialTable() {
+            var table = document.createElement("table");
+            var bodys = document.getElementsByTagName("body");
+            var body = bodys[0];
+            var str = document.getElementById("selectBar").value;
+            body.appendChild(table);
+            for (var j = 0; j < sourceData.length; j++) {
+                var tr = document.createElement("tr");
+                if (j == 0) {
+                    var td1 = document.createElement("td");
+                    td1.innerHTML = "商品";
+                    var td2 = document.createElement("td");
+                    td2.innerHTML = "地区";
+                    tr.appendChild(td1);
+                    tr.appendChild(td2);
+                    for (var i = 0; i < 12; i++) {
+                        var td = document.createElement("td");
+                        td.innerHTML = (i + 1) + "月";
+                        tr.appendChild(td);
+                    }
+                    table.appendChild(tr);
+                }
+                else {
+                    if (sourceData[j].region == str) {
+                        var tr = document.createElement("tr");
+                        var td1 = document.createElement("td");
+                        td1.innerHTML = sourceData[j].product;
+                        var td2 = document.createElement("td");
+                        td2.innerHTML = sourceData[j].region;
+                        tr.appendChild(td1);
+                        tr.appendChild(td2);
+                        for (var i = 0; i < 12; i++) {
+                            var td = document.createElement("td");
+                            td.innerHTML = sourceData[j].sale[i];
+                            tr.appendChild(td);
+                        }
+                        table.appendChild(tr);
+                    }
+
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
