@@ -12,17 +12,31 @@
 </head>
 
 <body>
-    <select id="selectRegionBar" onchange="selectChange()">
+    <!-- <select id="selectRegionBar" onchange="selectChange()">
         <option value="华东" selected>华东</option>
         <option value="华北">华北</option>
         <option value="华南">华南</option>
-    </select>
+    </select> -->
 
-    <select id="selectProductBar" onchange="selectChange()">
+    <form id="region">
+        <input type="checkbox" id="allregion" value="全选" onchange="selectChange()">全选<br />
+        <input type="checkbox" checked id="east" value="华东" onchange="selectChange()">华东<br />
+        <input type="checkbox" id="north" value="华北" onchange="selectChange()">华北<br />
+        <input type="checkbox" id="south" value="华南" onchange="selectChange()">华南<br />
+    </form>
+
+    <form id="product">
+        <input type="checkbox" id="allproduct" value="全选" onchange="selectChange()">全选<br />
+        <input type="checkbox" checked id="phone" value="手机" onchange="selectChange()">手机<br />
+        <input type="checkbox" id="laptop" value="笔记本" onchange="selectChange()">笔记本<br />
+        <input type="checkbox" id="broadcast" value="智能音箱" onchange="selectChange()">智能音箱<br />
+    </form>
+
+    <!-- <select id="selectProductBar" onchange="selectChange()">
         <option value="手机" selected>手机</option>
         <option value="笔记本">笔记本</option>
         <option value="智能音箱">智能音箱</option>
-    </select>
+    </select> -->
 
     <script>
         var sourceData = [{
@@ -80,8 +94,42 @@
             var table = document.createElement("table");
             var bodys = document.getElementsByTagName("body");
             var body = bodys[0];
-            var region = document.getElementById("selectRegionBar").value;
-            var product = document.getElementById("selectProductBar").value;
+            var region1, region2, region3, product1, product2, product3 = "";
+            if(document.getElementById("allregion").checked){
+                region1 = document.getElementById("east").value;
+                region2 = document.getElementById("north").value;
+                region3 = document.getElementById("south").value;
+                document.getElementById("east").checked=true;
+                document.getElementById("north").checked=true;
+                document.getElementById("south").checked=true;
+            }
+            if (document.getElementById("east").checked) {
+                region1 = document.getElementById("east").value;
+            }
+            if (document.getElementById("north").checked) {
+                region2 = document.getElementById("north").value;
+            }
+            if (document.getElementById("south").checked) {
+                region3 = document.getElementById("south").value;
+            }
+            if(document.getElementById("allproduct").checked){
+                product1 = document.getElementById("phone").value;
+                product2 = document.getElementById("laptop").value;
+                product3 = document.getElementById("broadcast").value;
+                document.getElementById("phone").checked=true;
+                document.getElementById("laptop").checked=true;
+                document.getElementById("broadcast").checked=true;
+            }
+            if (document.getElementById("phone").checked) {
+                product1 = document.getElementById("phone").value;
+            }
+            if (document.getElementById("laptop").checked) {
+                product2 = document.getElementById("laptop").value;
+            }
+            if (document.getElementById("broadcast").checked) {
+                product3 = document.getElementById("broadcast").value;
+            }
+
             body.appendChild(table);
             for (var j = -1; j < sourceData.length; j++) {
                 var tr = document.createElement("tr");
@@ -100,7 +148,7 @@
                     table.appendChild(tr);
                 }
                 else {
-                    if (sourceData[j].region == region && sourceData[j].product == product) {
+                    if ((sourceData[j].region == region1 || sourceData[j].region == region2 || sourceData[j].region == region3) && (sourceData[j].product == product1 || sourceData[j].product == product2 || sourceData[j].product == product3)) {
                         var tr = document.createElement("tr");
                         var td1 = document.createElement("td");
                         td1.innerHTML = sourceData[j].product;
