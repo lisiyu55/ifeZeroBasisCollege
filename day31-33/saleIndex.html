@@ -232,30 +232,6 @@
             return num;
         }
 
-        function regionNum() {//只有一个地区被选择时，对应该地区的数据条数
-            var east = document.getElementById("east").checked;
-            var north = document.getElementById("north").checked;
-            var south = document.getElementById("south").checked;
-            var num = 0;
-            var region = "";
-            if (east) {
-                region = document.getElementById("east").value;
-            }
-            if (north) {
-                region = document.getElementById("north").value;
-            }
-            if (south) {
-                region = document.getElementById("south").value;
-            }
-            for (var i = 0; i < sourceData.length; i++) {
-                if (sourceData[i].region == region) {
-                    num++;
-                }
-            }
-            return num;
-        }
-
-
         function initialTable() {
             var table = document.createElement("table");
             var bodys = document.getElementsByTagName("body");
