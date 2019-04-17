@@ -316,12 +316,9 @@
                     var tr = document.createElement("tr");
                     if ((sourceData[j].region == region1 || sourceData[j].region == region2 || sourceData[j].region == region3) && (sourceData[j].product == product1 || sourceData[j].product == product2 || sourceData[j].product == product3)) {
                         var tr = document.createElement("tr");
-                        if (j == 0) {
-                            var td1 = document.createElement("td");
-                            td1.innerHTML = sourceData[j].region;
-                            td1.rowSpan = regionNum();
-                            tr.appendChild(td1);
-                        }
+                        var td1 = document.createElement("td");
+                        td1.innerHTML = sourceData[j].region;
+                        tr.appendChild(td1);
                         var td2 = document.createElement("td");
                         td2.innerHTML = sourceData[j].product;
                         tr.appendChild(td2);
@@ -333,6 +330,22 @@
                         table.appendChild(tr);
                     }
                 }
+                var stable = document.getElementsByTagName("table")[0];
+                var j = 1;
+                var t = 0;
+                    for (t = j; j < stable.rows.length - 1; j++) {
+                        if (stable.rows[j].cells[0].innerHTML != stable.rows[j + 1].cells[0].innerHTML)
+                            break;
+                    }
+                    if (t != j) {
+                        for (var q = t + 1; q <= j; q++) {
+                            stable.rows[q].removeChild(stable.rows[q].cells[0]);
+                        }
+                        var n = (j - t + 1) + "";
+                        stable.rows[t].cells[0].setAttribute("rowspan", n);
+                    }
+                    
+                
 
             }
             else {
@@ -353,21 +366,13 @@
                     var tr = document.createElement("tr");
                     if ((sourceData[j].region == region1 || sourceData[j].region == region2 || sourceData[j].region == region3) && (sourceData[j].product == product1 || sourceData[j].product == product2 || sourceData[j].product == product3)) {
                         var tr = document.createElement("tr");
-                        var i = 0;
-                        while (sourceData[i].product != sourceData[i + 1].product && i < sourceData.length){
-                            var td1 = document.createElement("td");
-                            td1.innerHTML = sourceData[j].product;
-                            td1.rowSpan = i;
-                            tr.appendChild(td1);
-                        } 
-                        i = 0;
-                        while (sourceData[i].product != sourceData[i + 1].product && i < sourceData.length){
-                            var td2 = document.createElement("td");
-                            td2.innerHTML = sourceData[j].region;
-                            td1.rowSpan = i;
-                            tr.appendChild(td2);
-                        } 
 
+                        var td1 = document.createElement("td");
+                        td1.innerHTML = sourceData[j].product;
+                        tr.appendChild(td1);
+                        var td2 = document.createElement("td");
+                        td2.innerHTML = sourceData[j].region;
+                        tr.appendChild(td2);
 
                         for (var i = 0; i < 12; i++) {
                             var td = document.createElement("td");
@@ -377,6 +382,28 @@
                         table.appendChild(tr);
                     }
                 }
+
+                var stable = document.getElementsByTagName("table")[0];
+                var j = 1;
+                var t = 0;
+                i = 0;
+
+                while (j < stable.rows.length - 1) {
+                    for (t = j; j < stable.rows.length - 1; j++) {
+                        if (stable.rows[j].cells[0].innerHTML != stable.rows[j + 1].cells[0].innerHTML)
+                            break;
+                    }
+                    if (t != j) {
+                        for (var q = t + 1; q <= j; q++) {
+                            stable.rows[q].removeChild(stable.rows[q].cells[0]);
+                        }
+                        var n = (j - t + 1) + "";
+                        stable.rows[t].cells[0].setAttribute("rowspan", n);
+                    }
+                    j++;
+                }
+
+
             }
 
 
