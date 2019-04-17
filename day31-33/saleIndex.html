@@ -322,7 +322,6 @@
                             td1.rowSpan = regionNum();
                             tr.appendChild(td1);
                         }
-
                         var td2 = document.createElement("td");
                         td2.innerHTML = sourceData[j].product;
                         tr.appendChild(td2);
@@ -354,12 +353,22 @@
                     var tr = document.createElement("tr");
                     if ((sourceData[j].region == region1 || sourceData[j].region == region2 || sourceData[j].region == region3) && (sourceData[j].product == product1 || sourceData[j].product == product2 || sourceData[j].product == product3)) {
                         var tr = document.createElement("tr");
-                        var td1 = document.createElement("td");
-                        td1.innerHTML = sourceData[j].product;
-                        var td2 = document.createElement("td");
-                        td2.innerHTML = sourceData[j].region;
-                        tr.appendChild(td1);
-                        tr.appendChild(td2);
+                        var i = 0;
+                        while (sourceData[i].product != sourceData[i + 1].product && i < sourceData.length){
+                            var td1 = document.createElement("td");
+                            td1.innerHTML = sourceData[j].product;
+                            td1.rowSpan = i;
+                            tr.appendChild(td1);
+                        } 
+                        i = 0;
+                        while (sourceData[i].product != sourceData[i + 1].product && i < sourceData.length){
+                            var td2 = document.createElement("td");
+                            td2.innerHTML = sourceData[j].region;
+                            td1.rowSpan = i;
+                            tr.appendChild(td2);
+                        } 
+
+
                         for (var i = 0; i < 12; i++) {
                             var td = document.createElement("td");
                             td.innerHTML = sourceData[j].sale[i];
