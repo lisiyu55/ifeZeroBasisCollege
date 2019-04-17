@@ -78,64 +78,65 @@
         }]
         window.initialTable();
 
-        
 
-        function selectChange1(){
+
+        function selectChange1() {         //selectchange1、2、3、4、5、6单独拉出来是为了控制地区或者商品中只有一个多选框选中，
+            //用户还要点击取消时，要设置这个操作无效
             var east = document.getElementById("east").checked;
             var north = document.getElementById("north").checked;
             var south = document.getElementById("south").checked;
-            if(!east && !north && !south){
-                document.getElementById("east").checked=true;
+            if (!east && !north && !south) {
+                document.getElementById("east").checked = true;
             }
             selectChange();
         }
 
-        function selectChange2(){
+        function selectChange2() {
             var east = document.getElementById("east").checked;
             var north = document.getElementById("north").checked;
             var south = document.getElementById("south").checked;
-            if(!east && !north && !south){
-                document.getElementById("north").checked=true;
+            if (!east && !north && !south) {
+                document.getElementById("north").checked = true;
             }
             selectChange();
         }
 
-        function selectChange3(){
+        function selectChange3() {
             var east = document.getElementById("east").checked;
             var north = document.getElementById("north").checked;
             var south = document.getElementById("south").checked;
-            if(!east && !north && !south){
-                document.getElementById("south").checked=true;
+            if (!east && !north && !south) {
+                document.getElementById("south").checked = true;
             }
             selectChange();
         }
 
-        function selectChange4(){
+        function selectChange4() {
             var phone = document.getElementById("phone").checked;
             var laptop = document.getElementById("laptop").checked;
             var broadcast = document.getElementById("broadcast").checked;
-            if(!phone && !laptop && !broadcast){
-                document.getElementById("phone").checked=true;
+            if (!phone && !laptop && !broadcast) {
+                document.getElementById("phone").checked = true;
             }
             selectChange();
         }
 
-        function selectChange5(){
+        function selectChange5() {
             var phone = document.getElementById("phone").checked;
             var laptop = document.getElementById("laptop").checked;
             var broadcast = document.getElementById("broadcast").checked;
-            if(!phone && !laptop && !broadcast){
-                document.getElementById("laptop").checked=true;
+            if (!phone && !laptop && !broadcast) {
+                document.getElementById("laptop").checked = true;
             }
             selectChange();
         }
 
-        function selectChange6(){
+        function selectChange6() {
             var phone = document.getElementById("phone").checked;
             var laptop = document.getElementById("laptop").checked;
             var broadcast = document.getElementById("broadcast").checked;
-            if(!phone && !laptop && !broadcast){
-                document.getElementById("broadcast").checked=true;
+            if (!phone && !laptop && !broadcast) {
+                document.getElementById("broadcast").checked = true;
             }
             selectChange();
         }
@@ -148,7 +149,7 @@
             var east = document.getElementById("east").checked;
             var north = document.getElementById("north").checked;
             var south = document.getElementById("south").checked;
-            if (phone && laptop && broadcast) {
+            if (phone && laptop && broadcast) {   //判断是否地区或者商品的所有项已经被选择，来确定全选框对应的状态
                 document.getElementById("allproduct").checked = true;
             }
             else {
@@ -164,16 +165,16 @@
             initialTable();
         }
 
-        function emptyTable() {
+        function emptyTable() {//清空表格
             var body = document.getElementsByTagName("body");
             var table = document.getElementsByTagName("table");
             body[0].removeChild(table[0]);
         }
 
-        function changeRegion() {
+        function changeRegion() {  //判断是否全选框被点击选择，显示该类别所有内容
 
             var allregion = document.getElementById("allregion").checked;
-            
+
             if (allregion) {
                 document.getElementById("east").checked = true;
                 document.getElementById("north").checked = true;
@@ -184,8 +185,8 @@
 
         }
 
-        function changeProduct() {
-            
+        function changeProduct() {   //判断是否全选框被点击选择，显示该类别所有内容
+
             var allproduct = document.getElementById("allproduct").checked;
             if (allproduct) {
                 document.getElementById("phone").checked = true;
@@ -197,6 +198,62 @@
 
         }
 
+        function selectRegionNum() {
+            var east = document.getElementById("east").checked;
+            var north = document.getElementById("north").checked;
+            var south = document.getElementById("south").checked;
+            var num = 0;
+            if (east) {
+                num++;
+            }
+            if (north) {
+                num++;
+            }
+            if (south) {
+                num++;
+            }
+            return num;
+        }
+
+        function selectProductNum() {
+            var phone = document.getElementById("phone").checked;
+            var laptop = document.getElementById("laptop").checked;
+            var broadcast = document.getElementById("broadcast").checked;
+            var num = 0;
+            if (phone) {
+                num++;
+            }
+            if (laptop) {
+                num++;
+            }
+            if (broadcast) {
+                num++;
+            }
+            return num;
+        }
+
+        function regionNum() {//只有一个地区被选择时，对应该地区的数据条数
+            var east = document.getElementById("east").checked;
+            var north = document.getElementById("north").checked;
+            var south = document.getElementById("south").checked;
+            var num = 0;
+            var region = "";
+            if (east) {
+                region = document.getElementById("east").value;
+            }
+            if (north) {
+                region = document.getElementById("north").value;
+            }
+            if (south) {
+                region = document.getElementById("south").value;
+            }
+            for (var i = 0; i < sourceData.length; i++) {
+                if (sourceData[i].region == region) {
+                    num++;
+                }
+            }
+            return num;
+        }
 
 
         function initialTable() {
@@ -205,53 +262,96 @@
             var body = bodys[0];
             var region1, region2, region3, product1, product2, product3 = "";
 
-            if (document.getElementById("allregion").checked) {
+            if (document.getElementById("allregion").checked) { //判断是否全选框被点击选择，显示该类别所有内容
                 region1 = document.getElementById("east").value;
                 region2 = document.getElementById("north").value;
                 region3 = document.getElementById("south").value;
             }
-            if (document.getElementById("east").checked) {
-                region1 = document.getElementById("east").value;
+            else {
+                if (document.getElementById("east").checked) {
+                    region1 = document.getElementById("east").value;
+                }
+                if (document.getElementById("north").checked) {
+                    region2 = document.getElementById("north").value;
+                }
+                if (document.getElementById("south").checked) {
+                    region3 = document.getElementById("south").value;
+                }
             }
-            if (document.getElementById("north").checked) {
-                region2 = document.getElementById("north").value;
-            }
-            if (document.getElementById("south").checked) {
-                region3 = document.getElementById("south").value;
-            }
-            if (document.getElementById("allproduct").checked) {
+
+            if (document.getElementById("allproduct").checked) {   //判断是否全选框被点击选择，显示该类别所有内容
                 product1 = document.getElementById("phone").value;
                 product2 = document.getElementById("laptop").value;
                 product3 = document.getElementById("broadcast").value;
             }
-            if (document.getElementById("phone").checked) {
-                product1 = document.getElementById("phone").value;
-            }
-            if (document.getElementById("laptop").checked) {
-                product2 = document.getElementById("laptop").value;
-            }
-            if (document.getElementById("broadcast").checked) {
-                product3 = document.getElementById("broadcast").value;
+            else {
+                if (document.getElementById("phone").checked) {
+                    product1 = document.getElementById("phone").value;
+                }
+                if (document.getElementById("laptop").checked) {
+                    product2 = document.getElementById("laptop").value;
+                }
+                if (document.getElementById("broadcast").checked) {
+                    product3 = document.getElementById("broadcast").value;
+                }
             }
 
             body.appendChild(table);
-            for (var j = -1; j < sourceData.length; j++) {
+            if (selectRegionNum() == 1 && selectProductNum() > 1) {
                 var tr = document.createElement("tr");
-                if (j == -1) {
-                    var td1 = document.createElement("td");
-                    td1.innerHTML = "商品";
-                    var td2 = document.createElement("td");
-                    td2.innerHTML = "地区";
-                    tr.appendChild(td1);
-                    tr.appendChild(td2);
-                    for (var i = 0; i < 12; i++) {
-                        var td = document.createElement("td");
-                        td.innerHTML = (i + 1) + "月";
-                        tr.appendChild(td);
-                    }
-                    table.appendChild(tr);
+                var td1 = document.createElement("td");
+                td1.innerHTML = "地区";
+                var td2 = document.createElement("td");
+                td2.innerHTML = "商品";
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                for (var i = 0; i < 12; i++) {
+                    var td = document.createElement("td");
+                    td.innerHTML = (i + 1) + "月";
+                    tr.appendChild(td);
                 }
-                else {
+                table.appendChild(tr);
+
+                for (var j = 0; j < sourceData.length; j++) {
+                    var tr = document.createElement("tr");
+                    if ((sourceData[j].region == region1 || sourceData[j].region == region2 || sourceData[j].region == region3) && (sourceData[j].product == product1 || sourceData[j].product == product2 || sourceData[j].product == product3)) {
+                        var tr = document.createElement("tr");
+                        if (j == 0) {
+                            var td1 = document.createElement("td");
+                            td1.innerHTML = sourceData[j].region;
+                            td1.rowSpan = regionNum();
+                            tr.appendChild(td1);
+                        }
+
+                        var td2 = document.createElement("td");
+                        td2.innerHTML = sourceData[j].product;
+                        tr.appendChild(td2);
+                        for (var i = 0; i < 12; i++) {
+                            var td = document.createElement("td");
+                            td.innerHTML = sourceData[j].sale[i];
+                            tr.appendChild(td);
+                        }
+                        table.appendChild(tr);
+                    }
+                }
+
+            }
+            else {
+                var tr = document.createElement("tr");
+                var td1 = document.createElement("td");
+                td1.innerHTML = "商品";
+                var td2 = document.createElement("td");
+                td2.innerHTML = "地区";
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+                for (var i = 0; i < 12; i++) {
+                    var td = document.createElement("td");
+                    td.innerHTML = (i + 1) + "月";
+                    tr.appendChild(td);
+                }
+                table.appendChild(tr);
+                for (var j = 0; j < sourceData.length; j++) {
+                    var tr = document.createElement("tr");
                     if ((sourceData[j].region == region1 || sourceData[j].region == region2 || sourceData[j].region == region3) && (sourceData[j].product == product1 || sourceData[j].product == product2 || sourceData[j].product == product3)) {
                         var tr = document.createElement("tr");
                         var td1 = document.createElement("td");
@@ -267,9 +367,11 @@
                         }
                         table.appendChild(tr);
                     }
-
                 }
             }
+
+
+
         }
 
     </script>
