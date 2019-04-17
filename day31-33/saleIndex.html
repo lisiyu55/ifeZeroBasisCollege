@@ -19,17 +19,17 @@
     </select> -->
 
     <form id="region">
-        <input type="checkbox" id="allregion" value="全选" onchange="selectChange()">全选<br />
-        <input type="checkbox" checked id="east" value="华东" onchange="selectChange()">华东<br />
-        <input type="checkbox" id="north" value="华北" onchange="selectChange()">华北<br />
-        <input type="checkbox" id="south" value="华南" onchange="selectChange()">华南<br />
+        <input type="checkbox" id="allregion" value="全选" onchange="changeRegion()">全选<br />
+        <input type="checkbox" checked id="east" value="华东" onchange="selectChange1()">华东<br />
+        <input type="checkbox" id="north" value="华北" onchange="selectChange2()">华北<br />
+        <input type="checkbox" id="south" value="华南" onchange="selectChange3()">华南<br />
     </form>
 
     <form id="product">
-        <input type="checkbox" id="allproduct" value="全选" onchange="selectChange()">全选<br />
-        <input type="checkbox" checked id="phone" value="手机" onchange="selectChange()">手机<br />
-        <input type="checkbox" id="laptop" value="笔记本" onchange="selectChange()">笔记本<br />
-        <input type="checkbox" id="broadcast" value="智能音箱" onchange="selectChange()">智能音箱<br />
+        <input type="checkbox" id="allproduct" value="全选" onchange="changeProduct()">全选<br />
+        <input type="checkbox" checked id="phone" value="手机" onchange="selectChange4()">手机<br />
+        <input type="checkbox" id="laptop" value="笔记本" onchange="selectChange5()">笔记本<br />
+        <input type="checkbox" id="broadcast" value="智能音箱" onchange="selectChange6()">智能音箱<br />
     </form>
 
     <!-- <select id="selectProductBar" onchange="selectChange()">
@@ -77,8 +77,89 @@
             sale: [10, 40, 10, 6, 5, 6, 8, 6, 6, 6, 7, 26]
         }]
         window.initialTable();
+
+        
+
+        function selectChange1(){
+            var east = document.getElementById("east").checked;
+            var north = document.getElementById("north").checked;
+            var south = document.getElementById("south").checked;
+            if(!east && !north && !south){
+                document.getElementById("east").checked=true;
+            }
+            selectChange();
+        }
+
+        function selectChange2(){
+            var east = document.getElementById("east").checked;
+            var north = document.getElementById("north").checked;
+            var south = document.getElementById("south").checked;
+            if(!east && !north && !south){
+                document.getElementById("north").checked=true;
+            }
+            selectChange();
+        }
+
+        function selectChange3(){
+            var east = document.getElementById("east").checked;
+            var north = document.getElementById("north").checked;
+            var south = document.getElementById("south").checked;
+            if(!east && !north && !south){
+                document.getElementById("south").checked=true;
+            }
+            selectChange();
+        }
+
+        function selectChange4(){
+            var phone = document.getElementById("phone").checked;
+            var laptop = document.getElementById("laptop").checked;
+            var broadcast = document.getElementById("broadcast").checked;
+            if(!phone && !laptop && !broadcast){
+                document.getElementById("phone").checked=true;
+            }
+            selectChange();
+        }
+
+        function selectChange5(){
+            var phone = document.getElementById("phone").checked;
+            var laptop = document.getElementById("laptop").checked;
+            var broadcast = document.getElementById("broadcast").checked;
+            if(!phone && !laptop && !broadcast){
+                document.getElementById("laptop").checked=true;
+            }
+            selectChange();
+        }
+
+        function selectChange6(){
+            var phone = document.getElementById("phone").checked;
+            var laptop = document.getElementById("laptop").checked;
+            var broadcast = document.getElementById("broadcast").checked;
+            if(!phone && !laptop && !broadcast){
+                document.getElementById("broadcast").checked=true;
+            }
+            selectChange();
+        }
+
         //console.log(document.getElementById("selectBar").value);
         function selectChange() {
+            var phone = document.getElementById("phone").checked;
+            var laptop = document.getElementById("laptop").checked;
+            var broadcast = document.getElementById("broadcast").checked;
+            var east = document.getElementById("east").checked;
+            var north = document.getElementById("north").checked;
+            var south = document.getElementById("south").checked;
+            if (phone && laptop && broadcast) {
+                document.getElementById("allproduct").checked = true;
+            }
+            else {
+                document.getElementById("allproduct").checked = false;
+            }
+            if (east && north && south) {
+                document.getElementById("allregion").checked = true;
+            }
+            else {
+                document.getElementById("allregion").checked = false;
+            }
             emptyTable();
             initialTable();
         }
@@ -87,21 +168,47 @@
             var body = document.getElementsByTagName("body");
             var table = document.getElementsByTagName("table");
             body[0].removeChild(table[0]);
+        }
+
+        function changeRegion() {
+
+            var allregion = document.getElementById("allregion").checked;
+            
+            if (allregion) {
+                document.getElementById("east").checked = true;
+                document.getElementById("north").checked = true;
+                document.getElementById("south").checked = true;
+            }
+            emptyTable();
+            initialTable();
 
         }
+
+        function changeProduct() {
+            
+            var allproduct = document.getElementById("allproduct").checked;
+            if (allproduct) {
+                document.getElementById("phone").checked = true;
+                document.getElementById("laptop").checked = true;
+                document.getElementById("broadcast").checked = true;
+            }
+            emptyTable();
+            initialTable();
+
+        }
+
+
 
         function initialTable() {
             var table = document.createElement("table");
             var bodys = document.getElementsByTagName("body");
             var body = bodys[0];
             var region1, region2, region3, product1, product2, product3 = "";
-            if(document.getElementById("allregion").checked){
+
+            if (document.getElementById("allregion").checked) {
                 region1 = document.getElementById("east").value;
                 region2 = document.getElementById("north").value;
                 region3 = document.getElementById("south").value;
-                document.getElementById("east").checked=true;
-                document.getElementById("north").checked=true;
-                document.getElementById("south").checked=true;
             }
             if (document.getElementById("east").checked) {
                 region1 = document.getElementById("east").value;
@@ -112,13 +219,10 @@
             if (document.getElementById("south").checked) {
                 region3 = document.getElementById("south").value;
             }
-            if(document.getElementById("allproduct").checked){
+            if (document.getElementById("allproduct").checked) {
                 product1 = document.getElementById("phone").value;
                 product2 = document.getElementById("laptop").value;
                 product3 = document.getElementById("broadcast").value;
-                document.getElementById("phone").checked=true;
-                document.getElementById("laptop").checked=true;
-                document.getElementById("broadcast").checked=true;
             }
             if (document.getElementById("phone").checked) {
                 product1 = document.getElementById("phone").value;
