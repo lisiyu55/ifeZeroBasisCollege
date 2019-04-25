@@ -54,19 +54,19 @@ function initialTable() {
         }
         table.appendChild(tr);
 
-        for (var j = 0; j < sourceData.length; j++) {
+        for (var j = 0; j < data.length; j++) {
             var tr = document.createElement("tr");
-            if ((sourceData[j].region == region1 || sourceData[j].region == region2 || sourceData[j].region == region3) && (sourceData[j].product == product1 || sourceData[j].product == product2 || sourceData[j].product == product3)) {
+            if ((data[j].region == region1 || data[j].region == region2 || data[j].region == region3) && (data[j].product == product1 || data[j].product == product2 || data[j].product == product3)) {
                 var tr = document.createElement("tr");
                 var td1 = document.createElement("td");
-                td1.innerHTML = sourceData[j].region;
+                td1.innerHTML = data[j].region;
                 tr.appendChild(td1);
                 var td2 = document.createElement("td");
-                td2.innerHTML = sourceData[j].product;
+                td2.innerHTML = data[j].product;
                 tr.appendChild(td2);
                 for (var i = 0; i < 12; i++) {
                     var td = document.createElement("td");
-                    td.innerHTML = sourceData[j].sale[i];
+                    td.innerHTML = data[j].sale[i];
                     tr.appendChild(td);
                 }
                 table.appendChild(tr);
@@ -104,21 +104,21 @@ function initialTable() {
             tr.appendChild(td);
         }
         table.appendChild(tr);
-        for (var j = 0; j < sourceData.length; j++) {
+        for (var j = 0; j < data.length; j++) {
             var tr = document.createElement("tr");
-            if ((sourceData[j].region == region1 || sourceData[j].region == region2 || sourceData[j].region == region3) && (sourceData[j].product == product1 || sourceData[j].product == product2 || sourceData[j].product == product3)) {
+            if ((data[j].region == region1 || data[j].region == region2 || data[j].region == region3) && (data[j].product == product1 || data[j].product == product2 || data[j].product == product3)) {
                 var tr = document.createElement("tr");
 
                 var td1 = document.createElement("td");
-                td1.innerHTML = sourceData[j].product;
+                td1.innerHTML = data[j].product;
                 tr.appendChild(td1);
                 var td2 = document.createElement("td");
-                td2.innerHTML = sourceData[j].region;
+                td2.innerHTML = data[j].region;
                 tr.appendChild(td2);
 
                 for (var i = 0; i < 12; i++) {
                     var td = document.createElement("td");
-                    td.innerHTML = sourceData[j].sale[i];
+                    td.innerHTML = data[j].sale[i];
                     tr.appendChild(td);
                 }
                 table.appendChild(tr);
