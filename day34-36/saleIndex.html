@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table,
+        tr,
+        td {
+            border: 1px solid black;
+        }
+        form{
+            display: inline-block;
+            margin-right: 100px;
+            margin-bottom: 50px;
+        }
+        tr:first-of-type{
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <select id="selectRegionBar" onchange="selectChange()">
+        <option value="华东" selected>华东</option>
+        <option value="华北">华北</option>
+        <option value="华南">华南</option>
+    </select> -->
+
+    <script src="./ife31data.js"></script>
+    <label>地区：</label>
+    <form id="region">
+        <input type="checkbox" id="allregion" value="全选" onchange="changeRegion()">全选<br />
+        <input type="checkbox" checked id="east" value="华东" onchange="selectChange1()">华东<br />
+        <input type="checkbox" id="north" value="华北" onchange="selectChange2()">华北<br />
+        <input type="checkbox" id="south" value="华南" onchange="selectChange3()">华南<br />
+    </form>
+
+    <label>商品：</label>
+    <form id="product">
+        <input type="checkbox" id="allproduct" value="全选" onchange="changeProduct()">全选<br />
+        <input type="checkbox" checked id="phone" value="手机" onchange="selectChange4()">手机<br />
+        <input type="checkbox" id="laptop" value="笔记本" onchange="selectChange5()">笔记本<br />
+        <input type="checkbox" id="broadcast" value="智能音箱" onchange="selectChange6()">智能音箱<br />
+    </form>
+
+    <!-- <select id="selectProductBar" onchange="selectChange()">
+        <option value="手机" selected>手机</option>
+        <option value="笔记本">笔记本</option>
+        <option value="智能音箱">智能音箱</option>
+    </select> -->
+
+    <script src="./js/checkbox.js"></script>
+    <script src="./js/handleData.js"></script>
+    <script src="./js/selectchange.js"></script>
+    <script src="./js/table.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+
+</html>

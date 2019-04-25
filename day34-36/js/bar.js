@@ -23,7 +23,6 @@ function barGraphic(data) {
                 max = data[i].sale[j];
             }
         }
-
     }
     var real_ratio = (area_height - 50) / max;//每个sale单位所占的像素值
 
