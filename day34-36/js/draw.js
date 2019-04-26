@@ -48,6 +48,7 @@ function initDraw(allData) {
 
     for(var k=0;k<allData.length;k++){
         drawLineChart(allData[k], false,color[k%allData.length]);
+        barGraphic(allData[k]);
     }
 
     var getData = function () {//m的格式与data里面结构不一样，不能直接使用绘制柱状图与折线图
