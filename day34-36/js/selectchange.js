@@ -80,5 +80,6 @@ function selectChange() {
         document.getElementById("allregion").checked = false;
     }
     emptyTable();
-    initialTable();
+    allData=initialTable();
+    initDraw(allData);
 }

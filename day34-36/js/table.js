@@ -4,6 +4,9 @@ function initialTable() {
     var body = bodys[0];
     var region1, region2, region3, product1, product2, product3 = "";
 
+    var index = 0;
+    var allData=[];
+
     if (document.getElementById("allregion").checked) { //判断是否全选框被点击选择，显示该类别所有内容
         region1 = document.getElementById("east").value;
         region2 = document.getElementById("north").value;
@@ -64,30 +67,34 @@ function initialTable() {
                 var td2 = document.createElement("td");
                 td2.innerHTML = data[j].product;
                 tr.appendChild(td2);
+                allData[index]=new Array();
                 for (var i = 0; i < 12; i++) {
                     var td = document.createElement("td");
                     td.innerHTML = data[j].sale[i];
+                    allData[index][i] = data[j].sale[i];
                     tr.appendChild(td);
+                    
                 }
                 table.appendChild(tr);
+                index++;
             }
         }
         var stable = document.getElementsByTagName("table")[0];
         var j = 1;
         var t = 0;
-            for (t = j; j < stable.rows.length - 1; j++) {
-                if (stable.rows[j].cells[0].innerHTML != stable.rows[j + 1].cells[0].innerHTML)
-                    break;
+        for (t = j; j < stable.rows.length - 1; j++) {
+            if (stable.rows[j].cells[0].innerHTML != stable.rows[j + 1].cells[0].innerHTML)
+                break;
+        }
+        if (t != j) {
+            for (var q = t + 1; q <= j; q++) {
+                stable.rows[q].removeChild(stable.rows[q].cells[0]);
             }
-            if (t != j) {
-                for (var q = t + 1; q <= j; q++) {
-                    stable.rows[q].removeChild(stable.rows[q].cells[0]);
-                }
-                var n = (j - t + 1) + "";
-                stable.rows[t].cells[0].setAttribute("rowspan", n);
-            }
-            
-        
+            var n = (j - t + 1) + "";
+            stable.rows[t].cells[0].setAttribute("rowspan", n);
+        }
+
+
 
     }
     else {
@@ -115,13 +122,15 @@ function initialTable() {
                 var td2 = document.createElement("td");
                 td2.innerHTML = data[j].region;
                 tr.appendChild(td2);
-
+                allData[index]=new Array();
                 for (var i = 0; i < 12; i++) {
                     var td = document.createElement("td");
                     td.innerHTML = data[j].sale[i];
+                    allData[index][i] = data[j].sale[i];
                     tr.appendChild(td);
                 }
                 table.appendChild(tr);
+                index++;
             }
         }
 
@@ -147,8 +156,7 @@ function initialTable() {
 
 
     }
-
-
+    return allData;
 
 }
 

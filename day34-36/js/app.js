@@ -1,1 +1,2 @@
-window.initialTable();
+allData=window.initialTable();
+window.initDraw(data);
