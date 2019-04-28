@@ -73,6 +73,7 @@ function initialTable() {
                     td.innerHTML = data[j].sale[i];
                     // var input = document.createElement("input");
                     // input.value = data[j].sale[i];
+                    // input.setAttribute("class", "inputNum");
                     allData[index][i] = data[j].sale[i];
                     // td.appendChild(input);
                     tr.appendChild(td);
@@ -131,6 +132,7 @@ function initialTable() {
                     td.innerHTML = data[j].sale[i];
                     // var input = document.createElement("input");
                     // input.value = data[j].sale[i];
+                    // input.setAttribute("class", "inputNum");
                     allData[index][i] = data[j].sale[i];
                     // td.appendChild(input);
                     tr.appendChild(td);
@@ -162,12 +164,24 @@ function initialTable() {
 
 
     }
-    // input = document.getElementsByTagName("input");
+    // input = document.querySelectorAll(".inputNum");
     // for (let i = 0; i < input.length; i++) {
     //     input[i].onblur = function () {
     //         //接下来要执行的代码
+    //         if (isNaN(input[i].value)) {
+    //             alert("It's not a number!");
+    //         }
+    //         saveStorage();
+    //         var saveData = getSaveData();
+    //         if (saveData) {
+    //             return saveData;
+    //         }
+    //         else {
+    //             return allData;
+    //         }
     //     }
     // }
+
     return allData;
 
 }
@@ -179,6 +193,30 @@ function emptyTable() {//清空表格
 }
 
 function saveStorage() {
+    var data = [[]];
+    var str = "";
+    input = document.querySelectorAll(".inputNum");
+    for (let i = 0; i < input.length; i++) {
+        str += input[i].value + " ";
+    }
 
+    if (typeof (Storage !== "undefined")) {
+        localStorage.setItem("data", str);
+    }
+    else {
+        console.log("Not support Storage");
+    }
 }
 
+function getSaveData() {
+    var savedata = [[]];
+    var str = localStorage.getItem("data");
+    data = str.split(" ");
+    for (let j = 0; j < data.length / 12; j++) {
+        for (let i = 0; i < 12; i++) {
+            savedata[j][i] = parseInt(data[j * 12 + i]);
+        }
+    }
+    return savedata;
+
+}

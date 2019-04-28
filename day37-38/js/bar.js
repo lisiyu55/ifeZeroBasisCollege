@@ -17,13 +17,7 @@ function barGraphic(data) {
     barHtml.push("<line x1=" + 565 + " y1=" + 455 + " x2=" + 570 + " y2=" + 450 + " stroke=" + bar_color + " stroke-width='2'/>");
     barHtml.push("<line x1=" + 30 + " y1=" + 450 + " x2=" + 570 + " y2=" + 450 + " stroke=" + bar_color + " stroke-width='2'/>");
 
-    // for (let i = 0; i < data.length; i++) {
-    //     for (let j = 0; j < data[i].sale.length; j++) {
-    //         if (data[i].sale[j] > max) {
-    //             max = data[i].sale[j];
-    //         }
-    //     }
-    // }
+    
     var month = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一", "十二"];
 
     for (let i = 0; i < 12; i++) {
