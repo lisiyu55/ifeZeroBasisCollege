@@ -90,26 +90,54 @@ function initDraw(allData) {
     }
 
     var showEdit = function () {
-        var btn=this.getElementsByTagName("button");
-        btn[0].style.display = "block";
+        var btn = this.getElementsByTagName("button");
+        btn[2].style.display = "inline-block";
     }
+
+    var delEdit = function () {
+        var btn = this.getElementsByTagName("button");
+        btn[2].style.display = "none";
+    }
+
 
     for (var m = table[0].firstChild.nextSibling; m != null; m = m.nextSibling) {
         m.onmouseover = getData;
         m.onmouseout = del;
-    }
+        for (var t = m.firstChild; t != null; t = t.nextSibling) {
+            if (!isNaN(parseInt(t.innerHTML))) {
+                var btn = document.createElement("button");
+                btn.innerHTML = "编辑";
+                btn.setAttribute("class", "btn");
+                var btn1 = document.createElement("button");
+                btn1.innerHTML = "确定";
+                var btn2 = document.createElement("button");
+                btn2.innerHTML = "取消";
+                var num = this.innerHTML;
+                var input = document.createElement("input");
+                input.value = num;
+                t.appendChild(input);
+                t.appendChild(btn1);
+                t.appendChild(btn2);
+                t.appendChild(btn);
+                btn1.style.display = "none";
+                btn2.style.display = "none";
+                input.style.display = "none";
+                btn.onclick = function () {
+                    btn1.style.display = "inline";
+                    btn2.style.display = "inline";
+                    input.style.display = "inline";
+                }
+                btn.style.display = "none";
+                t.onmouseover = showEdit;
+                t.onmouseout = delEdit;
 
-    var m=table[0].firstChild.nextSibling;
-    for (var t = m.firstChild.nextSibling.nextSibling; t != null; t = t.nextSibling) {
-        var btn = document.createElement("button");
-        btn.innerHTML = "编辑";
-        t.appendChild(btn);
-        btn.style.display = "none";
-        t.onmouseover = showEdit;
-        // t.onmouseout = del;
+            }
+
+        }
     }
 
 }
+
 
 function reverseData(data) {
 
