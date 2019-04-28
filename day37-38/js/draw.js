@@ -45,19 +45,22 @@ function initDraw(allData) {
     //对于表单所选择的初始数据，我们需要循环每一行数据去绘制折线，同时控制折线颜色（可以定义一个颜色序列，共九种颜色，依次赋值）
 
     var color=["red","green","black","white","blue","orange","brown","pink","purple"];
-
-    for(var k=0;k<allData.length;k++){
-        drawLineChart(allData[k], false,color[k%allData.length]);
-        barGraphic(allData[k]);
-    }
+    //这里的allData应该是复选框所对应的全部十二个月的数据
+    drawLineChart(allData);
+    barGraphic(allData);
+    //这里对应之前每一行数据绘制柱状图和折线图
+    // for(var k=0;k<allData.length;k++){
+    //     drawLineChart(allData[k], false,color[k%allData.length]);
+    //     
+    // }
 
     var getData = function () {//m的格式与data里面结构不一样，不能直接使用绘制柱状图与折线图
         td = this.getElementsByTagName("td");
         var j = 0;
-        var data = [];
+        var data = [[]];
         for (var i = td.length - 1; j < 12; i--) {//通过读取被选中表格行内数据存储到data数组里面（反向存储）
             //console.log(td[i]);
-            data[j] = parseInt(td[i].innerHTML);
+            data[0][j] = parseInt(td[i].innerHTML);
             j++;
         }
         //将存储的数据反向转换回正常顺序
@@ -66,9 +69,12 @@ function initDraw(allData) {
         //在绘制之前，需要确定SVG以及canvas的位置,宽度均为550，高度均为450
 
         //在这里是对于鼠标hover时的情况，需要消除掉canvas里面原有的折线，重新绘制
-        var bool = false;//设置一个布尔数控制是否清除canvas内容，重新绘制折线
-        drawLineChart(data, true,"black");
+        //设置一个布尔数控制是否清除canvas内容，重新绘制折线
+        clearCanvas();
+        
+        drawLineChart(data);
         barGraphic(data);
+        
     }
 
     for (var m = table[0].firstChild; m != null; m = m.nextSibling) {
@@ -79,10 +85,19 @@ function initDraw(allData) {
 
 function reverseData(data) {
 
-    var data1 = [];
-    for (var i = 0; i < data.length; i++) {
-        data1[data.length - i - 1] = data[i];
+    var data1 = [[]];
+    for (var i = 0; i < data[0].length; i++) {
+        data1[0][data[0].length - i - 1] = data[0][i];
     }
     return data1;
+}
+
+function clearCanvas() {
+    var c = document.getElementById("canvas");
+    var cxt = c.getContext("2d");
+    cxt.fillStyle = "aqua";
+    cxt.beginPath();
+    cxt.fillRect(0, 0, c.width, c.height);
+    cxt.closePath();
 }
 

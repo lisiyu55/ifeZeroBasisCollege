@@ -5,7 +5,7 @@ function initialTable() {
     var region1, region2, region3, product1, product2, product3 = "";
 
     var index = 0;
-    var allData=[];
+    var allData = [];
 
     if (document.getElementById("allregion").checked) { //判断是否全选框被点击选择，显示该类别所有内容
         region1 = document.getElementById("east").value;
@@ -67,13 +67,16 @@ function initialTable() {
                 var td2 = document.createElement("td");
                 td2.innerHTML = data[j].product;
                 tr.appendChild(td2);
-                allData[index]=new Array();
+                allData[index] = new Array();
                 for (var i = 0; i < 12; i++) {
                     var td = document.createElement("td");
                     td.innerHTML = data[j].sale[i];
+                    // var input = document.createElement("input");
+                    // input.value = data[j].sale[i];
                     allData[index][i] = data[j].sale[i];
+                    // td.appendChild(input);
                     tr.appendChild(td);
-                    
+
                 }
                 table.appendChild(tr);
                 index++;
@@ -122,11 +125,14 @@ function initialTable() {
                 var td2 = document.createElement("td");
                 td2.innerHTML = data[j].region;
                 tr.appendChild(td2);
-                allData[index]=new Array();
+                allData[index] = new Array();
                 for (var i = 0; i < 12; i++) {
                     var td = document.createElement("td");
                     td.innerHTML = data[j].sale[i];
+                    // var input = document.createElement("input");
+                    // input.value = data[j].sale[i];
                     allData[index][i] = data[j].sale[i];
+                    // td.appendChild(input);
                     tr.appendChild(td);
                 }
                 table.appendChild(tr);
@@ -156,6 +162,12 @@ function initialTable() {
 
 
     }
+    // input = document.getElementsByTagName("input");
+    // for (let i = 0; i < input.length; i++) {
+    //     input[i].onblur = function () {
+    //         //接下来要执行的代码
+    //     }
+    // }
     return allData;
 
 }
@@ -165,3 +177,8 @@ function emptyTable() {//清空表格
     var table = document.getElementsByTagName("table");
     body[0].removeChild(table[0]);
 }
+
+function saveStorage() {
+
+}
+
