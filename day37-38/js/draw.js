@@ -61,7 +61,17 @@ function initDraw(allData) {
         var data = [[]];
         for (var i = td.length - 1; j < 12; i--) {//通过读取被选中表格行内数据存储到data数组里面（反向存储）
             //console.log(td[i]);
-            data[0][j] = parseInt(td[i].innerHTML);
+            if (isNaN(parseInt(td[i].innerHTML))) {
+                if(isNaN(parseInt(td[i].firstChild.nextSibling.value))){
+                    data[0][j] = parseInt(td[i].firstChild.value);
+                }
+                else{
+                    data[0][j] = parseInt(td[i].firstChild.nextSibling.value);
+                }
+            }
+            else {
+                data[0][j] = parseInt(td[i].innerHTML);
+            }
             j++;
         }
 
@@ -91,7 +101,15 @@ function initDraw(allData) {
 
     var showEdit = function () {
         var btn = this.getElementsByTagName("button");
-        btn[2].style.display = "inline-block";
+        if (btn.length == 0) {
+            btn[2].style.display = "inline-block";
+        }
+        else if (btn[1].style.display == "inline") {
+            return;
+        }
+        else {
+            btn[2].style.display = "inline-block";
+        }
     }
 
     var delEdit = function () {
@@ -105,16 +123,21 @@ function initDraw(allData) {
         m.onmouseout = del;
         for (var t = m.firstChild; t != null; t = t.nextSibling) {
             if (!isNaN(parseInt(t.innerHTML))) {
+                var text=document.createTextNode("");
                 var btn = document.createElement("button");
                 btn.innerHTML = "编辑";
                 btn.setAttribute("class", "btn");
                 var btn1 = document.createElement("button");
                 btn1.innerHTML = "确定";
+                btn1.setAttribute("class", "btn1");
                 var btn2 = document.createElement("button");
                 btn2.innerHTML = "取消";
-                var num = this.innerHTML;
+                btn2.setAttribute("class", "btn2");
                 var input = document.createElement("input");
+                var num = t.innerHTML;
                 input.value = num;
+                input.setAttribute("class", "input");
+                t.appendChild(text);
                 t.appendChild(input);
                 t.appendChild(btn1);
                 t.appendChild(btn2);
@@ -122,11 +145,6 @@ function initDraw(allData) {
                 btn1.style.display = "none";
                 btn2.style.display = "none";
                 input.style.display = "none";
-                btn.onclick = function () {
-                    btn1.style.display = "inline";
-                    btn2.style.display = "inline";
-                    input.style.display = "inline";
-                }
                 btn.style.display = "none";
                 t.onmouseover = showEdit;
                 t.onmouseout = delEdit;
@@ -135,9 +153,36 @@ function initDraw(allData) {
 
         }
     }
+    var btn = document.getElementsByClassName("btn");
+    var btn1 = document.getElementsByClassName("btn1");
+    var btn2 = document.getElementsByClassName("btn2");
+    var input = document.getElementsByClassName("input");
+    for (let i = 0; i < btn.length; i++) {
+        btn[i].onclick = function () {
+            // btn[i].parentNode.innerHTML = "<input value= \"" + input[i].value + "\"" + "class=" + "\"input\">" + "<button class=" + "\"btn1\"" + ">确定</button><button class=" + "\"btn2\"" + ">取消</button><button class=" + "\"btn\"" + ">编辑</button>";
+            btn[i].parentNode.removeChild(btn[i].parentNode.childNodes.item(0));
+            btn1[i].style.display = "inline";
+            btn2[i].style.display = "inline";
+            input[i].style.display = "inline";
+            btn[i].style.display = "none";
+            btn1[i].onclick = function () {
+                //btn[i].parentNode.innerHTML = input[i].value+"<input value= \"" + input[i].value + "\"" + "class=" + "\"input\">" + "<button class=" + "\"btn1\"" + ">确定</button><button class=" + "\"btn2\"" + ">取消</button><button class=" + "\"btn\"" + ">编辑</button>";
+                if(btn[i].parentNode.childNodes.item(0).data==""){
+                    btn[i].parentNode.childNodes.item(0).data=input[i].value;
+                }
+                btn1[i].style.display = "none";
+                btn2[i].style.display = "none";
+                input[i].style.display = "none";
+                btn[i].style.display="none"
+                
+            }
+        }
+
+    }
+
+
 
 }
-
 
 function reverseData(data) {
 
