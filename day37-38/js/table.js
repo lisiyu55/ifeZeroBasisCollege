@@ -164,25 +164,15 @@ function initialTable() {
 
 
     }
-    // input = document.querySelectorAll(".inputNum");
-    // for (let i = 0; i < input.length; i++) {
-    //     input[i].onblur = function () {
-    //         //接下来要执行的代码
-    //         if (isNaN(input[i].value)) {
-    //             alert("It's not a number!");
-    //         }
-    //         saveStorage();
-    //         var saveData = getSaveData();
-    //         if (saveData) {
-    //             return saveData;
-    //         }
-    //         else {
-    //             return allData;
-    //         }
-    //     }
-    // }
-
-    return allData;
+            saveStorage();
+            var saveData = getSaveData();
+            if (saveData) {
+                return saveData;
+            }
+            else{
+                return allData;
+            }
+        
 
 }
 
@@ -192,31 +182,3 @@ function emptyTable() {//清空表格
     body[0].removeChild(table[0]);
 }
 
-function saveStorage() {
-    var data = [[]];
-    var str = "";
-    input = document.querySelectorAll(".inputNum");
-    for (let i = 0; i < input.length; i++) {
-        str += input[i].value + " ";
-    }
-
-    if (typeof (Storage !== "undefined")) {
-        localStorage.setItem("data", str);
-    }
-    else {
-        console.log("Not support Storage");
-    }
-}
-
-function getSaveData() {
-    var savedata = [[]];
-    var str = localStorage.getItem("data");
-    data = str.split(" ");
-    for (let j = 0; j < data.length / 12; j++) {
-        for (let i = 0; i < 12; i++) {
-            savedata[j][i] = parseInt(data[j * 12 + i]);
-        }
-    }
-    return savedata;
-
-}

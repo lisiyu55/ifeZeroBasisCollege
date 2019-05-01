@@ -62,7 +62,7 @@ function maxData(data) {
     var max = 0;
     for (let i = 0; i < data.length; i++) {
         for (let j = 0; j < data[i].length; j++) {
-            if (data[i][j] > max) {
+            if (parseInt(data[i][j]) > parseInt(max)) {
                 max = data[i][j];
             }
         }

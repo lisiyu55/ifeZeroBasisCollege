@@ -11,8 +11,6 @@ function drawLineChart(data) {
     //         }
     //     }
     // }
-
-    
     max = maxData(data);
     // for (let i = 0; i < data.length; i++) {
     //     if (data[i] > max) {
@@ -23,15 +21,15 @@ function drawLineChart(data) {
 
     if (canvas.getContext) {
         var ctx = canvas.getContext('2d');
-        
-       
+
+
         var h_gap = height / 8;
-        
-        var color=["red","green","black","white","blue","orange","brown","pink","purple"];
-        var index=parseInt(Math.random()*8);
+
+        var color = ["red", "green", "black", "white", "blue", "orange", "brown", "pink", "purple"];
+        var index = parseInt(Math.random() * 8);
         //读取数据，绘制折线
         for (let i = 0; i < data.length; i++) {
-            var c=color[(index+1)%8];
+            var c = color[(index + 1) % 8];
             index++;
             for (let j = 0; j < data[i].length - 1; j++) {
                 var x1 = 30 + (j + 1) * gap;
@@ -45,7 +43,7 @@ function drawLineChart(data) {
                 drawLineDot(x1, y1, x2, y2, bool, c);
             }
         }
-       drawXAxis(gap);
+        drawXAxis(gap);
         drawYAxis(h_gap, real_ratio);
         //绘制x轴
         ctx.beginPath();
@@ -70,7 +68,7 @@ function maxData(data) {
     var max = 0;
     for (let i = 0; i < data.length; i++) {
         for (let j = 0; j < data[i].length; j++) {
-            if (data[i][j] > max) {
+            if (parseInt(data[i][j]) > parseInt(max)) {
                 max = data[i][j];
             }
         }

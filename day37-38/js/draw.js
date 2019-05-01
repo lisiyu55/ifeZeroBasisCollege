@@ -61,17 +61,18 @@ function initDraw(allData) {
         var data = [[]];
         for (var i = td.length - 1; j < 12; i--) {//通过读取被选中表格行内数据存储到data数组里面（反向存储）
             //console.log(td[i]);
-            if (isNaN(parseInt(td[i].innerHTML))) {
-                if(isNaN(parseInt(td[i].firstChild.nextSibling.value))){
-                    data[0][j] = parseInt(td[i].firstChild.value);
-                }
-                else{
-                    data[0][j] = parseInt(td[i].firstChild.nextSibling.value);
-                }
-            }
-            else {
-                data[0][j] = parseInt(td[i].innerHTML);
-            }
+            // if (isNaN(parseInt(td[i].innerHTML))) {
+            //     if (isNaN(parseInt(td[i].firstChild.nextSibling.value))) {
+            //         data[0][j] = parseInt(td[i].firstChild.value);
+            //     }
+            //     else {
+            //         data[0][j] = parseInt(td[i].firstChild.nextSibling.value);
+            //     }
+            // }
+            // else {
+            //     data[0][j] = parseInt(td[i].innerHTML);
+            // }
+            data[0][j] = td[i].firstChild.nextSibling.value;
             j++;
         }
 
@@ -94,9 +95,13 @@ function initDraw(allData) {
 
     }
     var del = function () {
+        saveStorage();
+        var data = getSaveData();
         clearCanvas();
-        drawLineChart(allData);
-        barGraphic(allData);
+
+        drawLineChart(data);
+        barGraphic(data);
+
     }
 
     var showEdit = function () {
@@ -123,7 +128,7 @@ function initDraw(allData) {
         m.onmouseout = del;
         for (var t = m.firstChild; t != null; t = t.nextSibling) {
             if (!isNaN(parseInt(t.innerHTML))) {
-                var text=document.createTextNode("");
+                var text = document.createTextNode("");
                 var btn = document.createElement("button");
                 btn.innerHTML = "编辑";
                 btn.setAttribute("class", "btn");
@@ -137,7 +142,7 @@ function initDraw(allData) {
                 var num = t.innerHTML;
                 input.value = num;
                 input.setAttribute("class", "input");
-                t.appendChild(text);
+                //t.appendChild(text);
                 t.appendChild(input);
                 t.appendChild(btn1);
                 t.appendChild(btn2);
@@ -160,22 +165,25 @@ function initDraw(allData) {
     for (let i = 0; i < btn.length; i++) {
         btn[i].onclick = function () {
             // btn[i].parentNode.innerHTML = "<input value= \"" + input[i].value + "\"" + "class=" + "\"input\">" + "<button class=" + "\"btn1\"" + ">确定</button><button class=" + "\"btn2\"" + ">取消</button><button class=" + "\"btn\"" + ">编辑</button>";
-            btn[i].parentNode.removeChild(btn[i].parentNode.childNodes.item(0));
+            //btn[i].parentNode.childNodes.item(0).data="";
+            //input[i].value=btn[i].parentNode.childNodes.item(0).data;
+            //btn[i].parentNode.removeChild(btn[i].parentNode.childNodes.item(0));
+            btn[i].parentNode.childNodes.item(0).data = "";
             btn1[i].style.display = "inline";
             btn2[i].style.display = "inline";
             input[i].style.display = "inline";
             btn[i].style.display = "none";
             btn1[i].onclick = function () {
-                //btn[i].parentNode.innerHTML = input[i].value+"<input value= \"" + input[i].value + "\"" + "class=" + "\"input\">" + "<button class=" + "\"btn1\"" + ">确定</button><button class=" + "\"btn2\"" + ">取消</button><button class=" + "\"btn\"" + ">编辑</button>";
-                if(btn[i].parentNode.childNodes.item(0).data==""){
-                    btn[i].parentNode.childNodes.item(0).data=input[i].value;
-                }
+                btn[i].parentNode.childNodes.item(0).data = input[i].value;
                 btn1[i].style.display = "none";
                 btn2[i].style.display = "none";
                 input[i].style.display = "none";
-                btn[i].style.display="none"
-                
+                btn[i].style.display = "none"
+
+
             }
+
+
         }
 
     }
@@ -200,5 +208,64 @@ function clearCanvas() {
     cxt.beginPath();
     cxt.fillRect(0, 0, c.width, c.height);
     cxt.closePath();
+}
+
+function saveStorage() {
+    var data = [[]];
+    var str = "";
+    tr = document.querySelectorAll("tr");
+    for (let i = 1; i < tr.length; i++) {
+        td = tr[i].querySelectorAll("td");
+        str += td[0].innerText + " ";
+        str += td[1].innerText + " ";
+        for (let j = 2; j < td.length; j++) {
+            if (!isNaN(td[j].innerText)) {
+                if (j == td.length - 1) {
+                    str += td[j].innerText;
+                }
+                else {
+                    str += td[j].innerText + " ";
+                }
+
+            }
+            else {
+                if (j == td.length - 1) {
+                    str += td[j].childNodes.item(1).value;
+                }
+                else {
+                    str += td[j].childNodes.item(1).value + " ";
+                }
+
+            }
+        }
+
+
+    }
+
+    if (typeof (Storage !== "undefined")) {
+        localStorage.setItem("data", str);
+    }
+    else {
+        console.log("Not support Storage");
+    }
+}
+
+function getSaveData() {
+    var savedata = new Object();
+    saveData.product = "";
+    saveData.region = "";
+    saveData.sale = [];
+    // saveData.sale=[];
+    var str = localStorage.getItem("data");
+    data = str.split(" ");
+    for (let j = 0; j < parseInt(data.length / 14); j++) {
+        saveData[j].product=data[j * 12];
+        saveData[j].product=data[j * 12+1];
+        for (let i = 2; i < 12; i++) {
+            savedata[j].sale[i] = parseInt(data[j * 12 + i]);
+        }
+    }
+    return savedata;
+
 }
 
